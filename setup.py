@@ -1,0 +1,43 @@
+"""Setup."""
+
+
+try:
+    from setuptools import setup
+except:  # pylint: disable=bare-except # noqa: E722 # NOLINT
+    from distutils.core import setup  # pylint: disable=wrong-import-order
+
+with open('README.md') as f:
+    long_description = f.read()  # pylint: disable=invalid-name
+
+test_deps = [
+        'pytest',
+        'mock',
+]
+
+extras = {
+        'test': test_deps,
+}
+
+setup(
+    author='SSC Pacific',
+    name='statick-tex',
+    description='Tool for running static analysis tools against TeX/LaTeX.',
+    version='0.1.0',
+    packages=['statick_tool', 'statick_tool.plugins.discovery'],
+    package_data={'statick_tool.plugins.discovery': ['*.yapsy-plugin']},
+    long_description=long_description,
+    long_description_content_type='text/markdown',
+    install_requires=['statick'],
+    tests_require=test_deps,
+    extras_require=extras,
+    url='https://github.com/tdenewiler/statick-tex',
+    classifiers=[
+        "License :: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication",
+        "Programming Language :: Python :: 2.7",
+        "Programming Language :: Python :: 3.4",
+        "Programming Language :: Python :: 3.5",
+        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
+        "Topic :: Software Development :: Testing",
+    ],
+)
