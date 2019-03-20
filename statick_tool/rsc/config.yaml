@@ -3,5 +3,7 @@ levels:
     tool:
       chktex:
         flags: ""
+      lacheck: 
+        flags: ""
       pylint:
         flags: "--good-names=f,i,j,k,x,y,z,ex,_"
