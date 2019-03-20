@@ -1,4 +1,4 @@
-"""Apply lacheck tool and gather results."""
+"""Apply chktex tool and gather results."""
 
 from __future__ import print_function
 
@@ -9,12 +9,12 @@ from statick_tool.issue import Issue
 from statick_tool.tool_plugin import ToolPlugin
 
 
-class LacheckToolPlugin(ToolPlugin):
-    """Apply lacheck tool and gather results."""
+class ChktexToolPlugin(ToolPlugin):
+    """Apply chktex tool and gather results."""
 
     def get_name(self):
         """Get name of tool."""
-        return "lacheck"
+        return "chktex"
 
     def scan(self, package, level):
         """Run tool and gather output."""
@@ -23,7 +23,7 @@ class LacheckToolPlugin(ToolPlugin):
         flags += user_flags
         total_output = []
 
-        tool_bin = "lacheck"
+        tool_bin = "chktex"
         for src in package["tex"]:
             try:
                 subproc_args = [tool_bin, src] + flags
@@ -57,7 +57,7 @@ class LacheckToolPlugin(ToolPlugin):
 
     def parse_output(self, total_output):
         """Parse tool output and report issues."""
-        tool_re = r"(.+)\s(.+)\s(\d+):\s(.+)"
+        tool_re = r"(.+)\s(\d+)\s(.+)\s(.+)\s(.+)\s(\d+):\s(.+)"
         parse = re.compile(tool_re)
         issues = []
         filename = ''
@@ -69,12 +69,21 @@ class LacheckToolPlugin(ToolPlugin):
             for line in output.splitlines():
                 match = parse.match(line)
                 if match:
-                    filename = match.group(1)[1:-2]
-                    issue_type = "lacheck"
-                    line_number = match.group(3)
-                    message = match.group(4)
-                    issues.append(Issue(filename, line_number,
-                                        self.get_name(), issue_type,
-                                        "3", message, None))
+                    if match.group(1) == "Warning":
+                        filename = match.group(4)
+                        issue_type = match.group(2)
+                        line_number = match.group(6)
+                        message = match.group(7)
+                        issues.append(Issue(filename, line_number,
+                                            self.get_name(), issue_type,
+                                            "3", message, None))
+                    elif match.group(1) == "Error":
+                        filename = match.group(4)
+                        issue_type = match.group(2)
+                        line_number = match.group(6)
+                        message = match.group(7)
+                        issues.append(Issue(filename, line_number,
+                                            self.get_name(), issue_type,
+                                            "5", message, None))
 
         return issues

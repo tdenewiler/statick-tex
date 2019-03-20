@@ -1,1 +1,1 @@
-"""Package file for statick-tex."""
+"""Default discovery plugins for statick-tex."""
