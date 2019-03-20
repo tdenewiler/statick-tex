@@ -1,5 +1,7 @@
 levels:
   tex:
     tool:
+      chktex:
+        flags: ""
       pylint:
         flags: "--good-names=f,i,j,k,x,y,z,ex,_"
