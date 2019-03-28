@@ -2,7 +2,7 @@
 
 
 try:
-    from setuptools import setup
+    from setuptools import find_packages, setup
 except:  # pylint: disable=bare-except # noqa: E722 # NOLINT
     from distutils.core import setup  # pylint: disable=wrong-import-order
 
@@ -23,12 +23,10 @@ setup(
     name='statick-tex',
     description='Tool for running static analysis tools against TeX/LaTeX.',
     version='0.1.0',
-    packages=['statick_tool',
-              'statick_tool.plugins.discovery',
-              'statick_tool.plugins.tool'],
-    package_dir={'statick_tool': 'statick_tool'},
-    package_data={'statick_tool.plugins.discovery': ['*.yapsy-plugin'],
-                  'statick_tool.plugins.tool': ['*.yapsy-plugin']},
+    packages=find_packages(exclude=('tests')),
+    include_package_data=True,
+    # package_data={'statick_tool': ['rsc/*', 'plugins/*.py',
+    #                                'plugins/discovery/*', 'plugins/tool/*']},
     long_description=long_description,
     long_description_content_type='text/markdown',
     install_requires=['statick'],

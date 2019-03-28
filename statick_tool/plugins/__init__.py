@@ -1,1 +1,1 @@
-"""Plugin definitions for statick."""
+"""Package file for statick-tex plugins."""

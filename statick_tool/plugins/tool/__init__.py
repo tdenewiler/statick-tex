@@ -1,1 +1,1 @@
-"""Default tool plugins for statick-tex."""
+"""Tools package file for statick-tex."""
