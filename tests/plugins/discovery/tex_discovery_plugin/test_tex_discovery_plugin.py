@@ -1,12 +1,13 @@
 """Unit tests for the TeX discovery plugin."""
 import os
 
+from yapsy.PluginManager import PluginManager
+
 import statick_tool
 from statick_tool.discovery_plugin import DiscoveryPlugin
 from statick_tool.package import Package
-from statick_tool.plugins.discovery.tex_discovery_plugin import \
+from statick_tool.plugins.discovery.tex_discovery_plugin.tex_discovery_plugin import \
     TexDiscoveryPlugin
-from yapsy.PluginManager import PluginManager
 
 
 def test_tex_discovery_plugin_found():
@@ -20,7 +21,9 @@ def test_tex_discovery_plugin_found():
         "Discovery": DiscoveryPlugin,
     })
     manager.collectPlugins()
-    # Verify that a plugin's get_name() function returns "TeX"
+    # Verify that a plugin's get_name() function returns "tex"
+    for plugin_info in manager.getPluginsOfCategory("Discovery"):
+        print("name = {}".format(plugin_info.plugin_object.get_name()))
     assert any(plugin_info.plugin_object.get_name() == 'tex' for
                plugin_info in manager.getPluginsOfCategory("Discovery"))
     # While we're at it, verify that a plugin is named C Discovery Plugin
