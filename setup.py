@@ -2,7 +2,7 @@
 
 
 try:
-    from setuptools import find_packages, setup
+    from setuptools import setup
 except:  # pylint: disable=bare-except # noqa: E722 # NOLINT
     from distutils.core import setup  # pylint: disable=wrong-import-order
 
@@ -23,10 +23,24 @@ setup(
     name='statick-tex',
     description='Tool for running static analysis tools against TeX/LaTeX.',
     version='0.1.0',
-    packages=find_packages(exclude=('tests')),
-    include_package_data=True,
-    # package_data={'statick_tool': ['rsc/*', 'plugins/*.py',
-    #                                'plugins/discovery/*', 'plugins/tool/*']},
+    packages=['statick_tool',
+              'statick_tool.plugins.discovery.tex_discovery_plugin',
+              'statick_tool.plugins.tool.chktex_tool_plugin',
+              'statick_tool.plugins.tool.lacheck_tool_plugin'],
+    package_dir={'statick_tool.plugins.discovery.tex_discovery_plugin':
+                 'statick_tool/plugins/discovery/tex_discovery_plugin',
+                 'statick_tool.plugins.tool.chktex_tool_plugin':
+                 'statick_tool/plugins/tool/chktex_tool_plugin',
+                 'statick_tool.plugins.tool.lacheck_tool_plugin':
+                 'statick_tool/plugins/tool/lacheck_tool_plugin',
+                 'statick_tool': '.'},
+    package_data={'statick_tool.plugins.discovery.tex_discovery_plugin':
+                  ['*.yapsy_plugin'],
+                  'statick_tool.plugins.tool.chktex_tool_plugin':
+                  ['*.yapsy_plugin'],
+                  'statick_tool.plugins.tool.lacheck_tool_plugin':
+                  ['*.yapsy_plugin'],
+                  'statick_tool': ['rsc/*']},
     long_description=long_description,
     long_description_content_type='text/markdown',
     install_requires=['statick'],
