@@ -35,11 +35,11 @@ setup(
                  'plugins/tool/lacheck_tool_plugin',
                  'statick_tool': '.'},
     package_data={'statick_tool.plugins.discovery.tex_discovery_plugin':
-                  ['*.yapsy_plugin'],
+                  ['*.yapsy-plugin'],
                   'statick_tool.plugins.tool.chktex_tool_plugin':
-                  ['*.yapsy_plugin'],
+                  ['*.yapsy-plugin'],
                   'statick_tool.plugins.tool.lacheck_tool_plugin':
-                  ['*.yapsy_plugin'],
+                  ['*.yapsy-plugin'],
                   'statick_tool': ['rsc/*']},
     long_description=long_description,
     long_description_content_type='text/markdown',
