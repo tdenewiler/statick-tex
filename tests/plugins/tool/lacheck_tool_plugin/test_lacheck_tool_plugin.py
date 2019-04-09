@@ -23,9 +23,9 @@ def setup_lacheck_tool_plugin():
                                         'plugins')])
     config = Config(resources.get_file("config.yaml"))
     plugin_context = PluginContext(arg_parser.parse_args([]), resources, config)
-    ctp = LacheckToolPlugin()
-    ctp.set_plugin_context(plugin_context)
-    return ctp
+    ltp = LacheckToolPlugin()
+    ltp.set_plugin_context(plugin_context)
+    return ltp
 
 
 def test_lacheck_tool_plugin_found():
