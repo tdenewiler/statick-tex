@@ -54,8 +54,10 @@ class TexDiscoveryPlugin(DiscoveryPlugin):
         print("  {} TeX files found.".format(len(tex_files)))
         if exceptions:
             original_file_count = len(tex_files)
-            tex_files = exceptions.filter_file_exceptions_early(package, tex_files)
+            tex_files = exceptions.filter_file_exceptions_early(package,
+                                                                tex_files)
             if original_file_count > len(tex_files):
-                print("  After filtering, {} TeX files will be scanned.".format(len(tex_files)))
+                print("  After filtering, {} TeX files will be scanned.".
+                      format(len(tex_files)))
 
         package["tex"] = tex_files
