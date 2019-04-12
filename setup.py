@@ -22,7 +22,7 @@ setup(
     author='SSC Pacific',
     name='statick-tex',
     description='Tool for running static analysis tools against TeX/LaTeX.',
-    version='0.1.0',
+    version='0.1.1',
     packages=['statick_tool',
               'statick_tool.plugins.discovery.tex_discovery_plugin',
               'statick_tool.plugins.tool.chktex_tool_plugin',
