@@ -24,21 +24,16 @@ setup(
     description='Tool for running static analysis tools against TeX/LaTeX.',
     version='0.1.1',
     packages=['statick_tool',
-              'statick_tool.plugins.discovery.tex_discovery_plugin',
-              'statick_tool.plugins.tool.chktex_tool_plugin',
-              'statick_tool.plugins.tool.lacheck_tool_plugin'],
-    package_dir={'statick_tool.plugins.discovery.tex_discovery_plugin':
+              'statick_tool.plugins.discovery',
+              'statick_tool.plugins.tool'],
+    package_dir={'statick_tool.plugins.discovery':
                  'plugins/tex_discovery_plugin',
-                 'statick_tool.plugins.tool.chktex_tool_plugin':
-                 'plugins/chktex_tool_plugin',
-                 'statick_tool.plugins.tool.lacheck_tool_plugin':
-                 'plugins/lacheck_tool_plugin',
+                 'statick_tool.plugins.tool':
+                 'plugins/tex_tool_plugins',
                  'statick_tool': '.'},
-    package_data={'statick_tool.plugins.discovery.tex_discovery_plugin':
+    package_data={'statick_tool.plugins.discovery':
                   ['*.yapsy-plugin'],
-                  'statick_tool.plugins.tool.chktex_tool_plugin':
-                  ['*.yapsy-plugin'],
-                  'statick_tool.plugins.tool.lacheck_tool_plugin':
+                  'statick_tool.plugins.tool':
                   ['*.yapsy-plugin'],
                   'statick_tool': ['rsc/*']},
     long_description=long_description,

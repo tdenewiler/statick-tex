@@ -1,1 +1,0 @@
-"""Lacheck tool plugin."""
