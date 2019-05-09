@@ -1,10 +1,7 @@
 """Setup."""
 
 
-try:
-    from setuptools import setup
-except:  # pylint: disable=bare-except # noqa: E722 # NOLINT
-    from distutils.core import setup  # pylint: disable=wrong-import-order
+from setuptools import setup
 
 with open('README.md') as f:
     long_description = f.read()  # pylint: disable=invalid-name
@@ -18,29 +15,26 @@ EXTRAS = {
     'test': TEST_DEPS,
 }
 
+VERSION = '0.1.1'
+
 setup(
     author='SSC Pacific',
     name='statick-tex',
     description='Tool for running static analysis tools against TeX/LaTeX.',
-    version='0.1.1',
+    version=VERSION,
     packages=['statick_tool',
-              'statick_tool.plugins.discovery.tex_discovery_plugin',
-              'statick_tool.plugins.tool.chktex_tool_plugin',
-              'statick_tool.plugins.tool.lacheck_tool_plugin'],
-    package_dir={'statick_tool.plugins.discovery.tex_discovery_plugin':
+              'statick_tool.plugins.discovery',
+              'statick_tool.plugins.tool'],
+    package_dir={'statick_tool': '.',
+                 'statick_tool.plugins.discovery':
                  'plugins/tex_discovery_plugin',
-                 'statick_tool.plugins.tool.chktex_tool_plugin':
-                 'plugins/chktex_tool_plugin',
-                 'statick_tool.plugins.tool.lacheck_tool_plugin':
-                 'plugins/lacheck_tool_plugin',
-                 'statick_tool': '.'},
-    package_data={'statick_tool.plugins.discovery.tex_discovery_plugin':
+                 'statick_tool.plugins.tool':
+                 'plugins/tex_tool_plugins'},
+    package_data={'statick_tool': ['rsc/*'],
+                  'statick_tool.plugins.discovery':
                   ['*.yapsy-plugin'],
-                  'statick_tool.plugins.tool.chktex_tool_plugin':
-                  ['*.yapsy-plugin'],
-                  'statick_tool.plugins.tool.lacheck_tool_plugin':
-                  ['*.yapsy-plugin'],
-                  'statick_tool': ['rsc/*']},
+                  'statick_tool.plugins.tool':
+                  ['*.yapsy-plugin']},
     long_description=long_description,
     long_description_content_type='text/markdown',
     install_requires=['statick'],
