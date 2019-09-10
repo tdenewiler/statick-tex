@@ -41,7 +41,6 @@ jobs:
       script: mkdir statick_output; statick . statick_output --profile self_check.yaml
     - stage: deploy
       python: '2.7'
-      script: skip
       provider: pypi
       user: tdenewiler
       password:
