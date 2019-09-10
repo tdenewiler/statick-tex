@@ -16,6 +16,9 @@ notifications:
   email:
     on_failure: never
 
+before_install:
+  - sudo apt-get update
+
 install:
   - cat install.txt | xargs sudo apt-get install -y
   - pip install -r requirements.txt
