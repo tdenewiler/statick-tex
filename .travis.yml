@@ -37,7 +37,8 @@ jobs:
     - stage: test
       python: '2.7'
       install:
-        - pip install statick
+        - cat install.txt | xargs sudo apt-get install -y
+        - pip install -r requirements.txt
       script: mkdir statick_output; statick . statick_output --profile self_check.yaml
     - stage: deploy
       python: '2.7'
