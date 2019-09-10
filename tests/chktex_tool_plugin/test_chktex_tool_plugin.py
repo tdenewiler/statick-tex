@@ -64,11 +64,9 @@ def test_chktex_tool_plugin_scan_valid():
 def test_chktex_tool_plugin_parse_valid():
     """Verify that we can parse the normal output of chktex."""
     cttp = setup_chktex_tool_plugin()
-    output = 'a\nb\nc\nd\nWarning 8 in /home/thomas/src/statick/statick-tex/tests/chktex_tool_plugin/valid_package/test.tex line 13: Wrong length of dash may have been used.\nAdding intentional chktex warning -- for dashes --- should have three of them.  \n                                  ^^\n'
+    output = 'a\nb\nc\nd\nWarning 8 in /e line 13: Wrong length of dash may have been used.\nAdding intentional chktex warning -- for dashes --- should have three of them.\n^^\n'
     issues = cttp.parse_output([output])
-    issue_file = os.path.join(os.path.dirname(__file__), 'valid_package') + '/test.tex'
     assert len(issues) == 1
-    assert issues[0].filename == issue_file
     assert issues[0].line_number == '13'
     assert issues[0].tool == 'chktex'
     assert issues[0].issue_type == '8'
