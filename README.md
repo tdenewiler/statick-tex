@@ -9,6 +9,21 @@
 This is a set of plugins for [Statick](https://github.com/sscpac/statick) that will discover TeX/LaTeX files and perform
 static analysis on those files.
 
+The current plugins will discover TeX/LaTeX files in a project and can be configured to check those files using
+[ChkTeX](https://ctan.org/pkg/chktex) and [LaCheck](https://ctan.org/pkg/lacheck).
+Custom exceptions can be applied the same way they are with
+[Statick exceptions](https://github.com/sscpac/statick/blob/master/GUIDE.md#exceptionsyaml).
+
+## Installation
+
+The recommended method to install these Statick plugins is via pip:
+
+    pip install statick-tex
+
+You can also clone the repository and use it locally.
+
+## Usage
+
 If you have statick, statick-tex, and a latex project laid out as follows:
 
   - src
