@@ -42,7 +42,7 @@ In that case you would use the following command in `src` to invoke your custom 
     ./statick/statick latex-project statick-output --user-paths ./latex-project/statick_config --profile tex-profile.yaml
 
 If statick and statick-tex are installed (either via local install commands or from pip) then you do not need to give
-the entire path to `statick` and `statick-tex/statick_tool`.
+the entire path to `statick`.
 
 ## Tests and Contributing
 
