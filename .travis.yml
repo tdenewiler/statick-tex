@@ -16,7 +16,11 @@ notifications:
   email:
     on_failure: never
 
+before_install:
+  - sudo apt-get update
+
 install:
+  - cat install.txt | xargs sudo apt-get install -y
   - pip install -r requirements.txt
 
 # This stage is run against everything in the matrix (so every python version)
@@ -33,11 +37,11 @@ jobs:
     - stage: test
       python: '2.7'
       install:
-        - pip install statick
+        - cat install.txt | xargs sudo apt-get install -y
+        - pip install -r requirements.txt
       script: mkdir statick_output; statick . statick_output --profile self_check.yaml
     - stage: deploy
       python: '2.7'
-      script: skip
       provider: pypi
       user: tdenewiler
       password:

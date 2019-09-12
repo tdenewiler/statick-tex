@@ -1,4 +1,8 @@
-"""Apply chktex tool and gather results."""
+"""
+Apply chktex tool and gather results.
+
+Chktex documentation at http://mirrors.rit.edu/CTAN/systems/doc/chktex/ChkTeX.pdf.
+"""
 
 from __future__ import print_function
 
@@ -77,13 +81,5 @@ class ChktexToolPlugin(ToolPlugin):
                         issues.append(Issue(filename, line_number,
                                             self.get_name(), issue_type,
                                             "3", message, None))
-                    elif match.group(1) == "Error":
-                        filename = match.group(4)
-                        issue_type = match.group(2)
-                        line_number = match.group(6)
-                        message = match.group(7)
-                        issues.append(Issue(filename, line_number,
-                                            self.get_name(), issue_type,
-                                            "5", message, None))
 
         return issues
