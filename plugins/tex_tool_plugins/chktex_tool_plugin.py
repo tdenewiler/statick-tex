@@ -51,7 +51,6 @@ class ChktexToolPlugin(ToolPlugin):
                 print("{}".format(output))
 
             total_output.append(output)
-            print("total_output: {}".format(total_output))
 
         with open(self.get_name() + ".log", "w") as fname:
             for output in total_output:
