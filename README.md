@@ -24,25 +24,54 @@ You can also clone the repository and use it locally.
 
 ## Usage
 
-If you have statick, statick-tex, and a latex project laid out as follows:
+### Pip Install
 
-  - src
-    - statick
-    - statick-output
-    - statick-tex
+The most common usage is to use statick and statick-tex from pip.
+In that case your directory structure will look like the following:
+
+  - doc
     - latex-project
+    - statick-output
 
-Then the following commands run in `src` would scan your TeX project using the default Statick configuration:
+To run with the default configuration for the statick-tex tools use:
 
-    ./statick/statick latex-project statick-output --profile tex-profile.yaml
+    statick latex-project/ statick-output/ --profile tex-profile.yaml
 
-If your LaTeX project had its own custom Statick configuration it could be stored under `latex-project/statick_config`.
-In that case you would use the following command in `src` to invoke your custom Statick configuration:
+### Pip Install and Custom Configuration
 
-    ./statick/statick latex-project statick-output --user-paths ./latex-project/statick_config --profile tex-profile.yaml
+There are times when you will want to have a custom Statick configuration.
+This is usually done to run a different set of tools than are called out in the default profile, or to add exceptions.
+For this case you will have to add the new Statick configuration somewhere.
+This example will have custom exceptions in the latex-project, such that the directory structure is:
 
-If statick and statick-tex are installed (either via local install commands or from pip) then you do not need to give
-the entire path to `statick`.
+  - doc
+    - latex-project
+      - statick-config
+        - rsc
+          - exceptions.yaml
+    - statick-output
+
+For this setup you will run the following:
+
+    statick latex-project/ statick-output/ --user-paths latex-project/statick-config/ --profile tex-profile.yaml
+
+### Source Install and Custom Configuration
+
+The last type of setup will be to have all of the tools available from cloning repositories, not installing from pip.
+The directory structure will look like:
+
+  - doc
+    - latex-project
+      - statick-config
+        - rsc
+          - exceptions.yaml
+    - statick-output
+    - statick
+    - statick-tex
+
+Using the example where we want to override the default exceptions with custom ones in the latex-project, the command to run would be:
+
+    ./statick/statick latex-project/ statick-output/ --user-paths statick-tex/,latex-project/statick-config/ --profile tex-profile.yaml
 
 ## Tests and Contributing
 
