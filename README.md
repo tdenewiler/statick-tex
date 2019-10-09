@@ -1,10 +1,10 @@
 # Statick TeX/LaTeX Plugins
 
-| Service  | Status |
-| -------- | ------ |
-| Build    | [![Travis-CI](https://api.travis-ci.org/tdenewiler/statick-tex.svg?branch=master)](https://travis-ci.org/tdenewiler/statick-tex/branches) |
-| PyPI     | [![PyPI version](https://badge.fury.io/py/statick-tex.svg)](https://badge.fury.io/py/statick-tex) |
-| Codecov  | [![Codecov](https://codecov.io/gh/tdenewiler/statick-tex/branch/master/graphs/badge.svg)](https://codecov.io/gh/tdenewiler/statick-tex/) |
+| Service   | Status |
+| --------- | ------ |
+| Build     | [![Travis-CI](https://api.travis-ci.org/tdenewiler/statick-tex.svg?branch=master)](https://travis-ci.org/tdenewiler/statick-tex/branches) |
+| PyPI      | [![PyPI version](https://badge.fury.io/py/statick-tex.svg)](https://badge.fury.io/py/statick-tex) |
+| Codecov   | [![Codecov](https://codecov.io/gh/tdenewiler/statick-tex/branch/master/graphs/badge.svg)](https://codecov.io/gh/tdenewiler/statick-tex/) |
 | Coveralls | [![Coverage Status](https://coveralls.io/repos/github/tdenewiler/statick-tex/badge.svg?branch=master)](https://coveralls.io/github/tdenewiler/statick-tex?branch=master) |
 
 This is a set of plugins for [Statick](https://github.com/sscpac/statick) that will discover TeX/LaTeX files and perform
