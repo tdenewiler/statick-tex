@@ -1,10 +1,11 @@
 # Statick TeX/LaTeX Plugins
 
-| Service | Status |
-| ------- | ------ |
-| Build   | [![Travis-CI](https://api.travis-ci.org/tdenewiler/statick-tex.svg?branch=master)](https://travis-ci.org/tdenewiler/statick-tex/branches) |
-| PyPI    | [![PyPI version](https://badge.fury.io/py/statick-tex.svg)](https://badge.fury.io/py/statick-tex) |
-| Codecov | [![Codecov](https://codecov.io/gh/tdenewiler/statick-tex/branch/master/graphs/badge.svg)](https://codecov.io/gh/tdenewiler/statick-tex/) |
+| Service   | Status |
+| --------- | ------ |
+| Build     | [![Travis-CI](https://api.travis-ci.org/tdenewiler/statick-tex.svg?branch=master)](https://travis-ci.org/tdenewiler/statick-tex/branches) |
+| PyPI      | [![PyPI version](https://badge.fury.io/py/statick-tex.svg)](https://badge.fury.io/py/statick-tex) |
+| Codecov   | [![Codecov](https://codecov.io/gh/tdenewiler/statick-tex/branch/master/graphs/badge.svg)](https://codecov.io/gh/tdenewiler/statick-tex/) |
+| Coveralls | [![Coverage Status](https://coveralls.io/repos/github/tdenewiler/statick-tex/badge.svg?branch=master)](https://coveralls.io/github/tdenewiler/statick-tex?branch=master) |
 
 This is a set of plugins for [Statick](https://github.com/sscpac/statick) that will discover TeX/LaTeX files and perform
 static analysis on those files.
@@ -76,6 +77,7 @@ Using the example where we want to override the default exceptions with custom o
 ## Tests and Contributing
 
 If you write a new feature for Statick or are fixing a bug, you are strongly encouraged to add unit tests for your contribution.
-In particular, it is much easier to test whether a bug is fixed (and identify future regressions) if you can add a small unit test which replicates the bug.
+In particular, it is much easier to test whether a bug is fixed (and identify future regressions) if you can add a small
+unit test which replicates the bug.
 
 Before submitting a change, please run tox to check that you have not introduced any regressions or violated any code style guidelines.

@@ -1,0 +1,3 @@
+fixes:
+  - "/home/travis/build/tdenewiler/statick-tex/.tox/py27/lib/python2.7/site-packages/statick_tool/plugins/discovery"::"plugins/tex_discovery_plugin/"
+  - "/home/travis/build/tdenewiler/statick-tex/.tox/py27/lib/python2.7/site-packages/statick_tool/plugins/tool/"::"plugins/tex_tool_plugins/"
