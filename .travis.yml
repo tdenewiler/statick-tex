@@ -29,6 +29,8 @@ script:
   # Borrowed from flask-mongoengine
   - tox -e $(echo py$TRAVIS_PYTHON_VERSION | tr -d . | sed -e 's/pypypy/pypy/')
 
+after_success:
+  - coveralls
 
 jobs:
   include:
