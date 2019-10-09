@@ -25,7 +25,7 @@ install:
 
 # This stage is run against everything in the matrix (so every python version)
 script:
-  - pip install tox
+  - pip install coveralls tox
   # Borrowed from flask-mongoengine
   - tox -e $(echo py$TRAVIS_PYTHON_VERSION | tr -d . | sed -e 's/pypypy/pypy/')
 
