@@ -7,6 +7,12 @@
 | Codecov   | [![Codecov](https://codecov.io/gh/tdenewiler/statick-tex/branch/master/graphs/badge.svg)](https://codecov.io/gh/tdenewiler/statick-tex/) |
 | Coveralls | [![Coverage Status](https://coveralls.io/repos/github/tdenewiler/statick-tex/badge.svg?branch=master)](https://coveralls.io/github/tdenewiler/statick-tex?branch=master) |
 
+![Python Versions](https://img.shields.io/pypi/pyversions/statick-tex.svg)
+![License](https://img.shields.io/pypi/l/statick-tex.svg)
+![Daily Downloads](https://img.shields.io/pypi/dd/statick-tex.svg)
+![Weekly Downloads](https://img.shields.io/pypi/dw/statick-tex.svg)
+![Monthly Downloads](https://img.shields.io/pypi/dm/statick-tex.svg)
+
 This is a set of plugins for [Statick](https://github.com/sscpac/statick) that will discover TeX/LaTeX files and perform
 static analysis on those files.
 
