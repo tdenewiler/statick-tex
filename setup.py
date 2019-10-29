@@ -1,7 +1,7 @@
 """Setup."""
 
 
-from setuptools import setup, find_packages
+from setuptools import setup
 
 with open('README.md') as f:
     long_description = f.read()  # pylint: disable=invalid-name
@@ -17,10 +17,13 @@ EXTRAS = {
 
 setup(
     author='Thomas Denewiler',
-    name='statick_tool',
+    name='statick-tex',
     description='Statick analysis plugins for TeX/LaTeX files and projects.',
-    packages=find_packages('src'),
-    package_dir={'': 'src'},
+    version='0.1.2',
+    packages=['statick_tool', 'statick_tool.plugins.discovery', 'statick_tool.plugins.tool'],
+    package_dir={'statick_tool.plugins.discovery': 'src/statick_tex/plugins/discovery/',
+                 'statick_tool.plugins.tool': 'src/statick_tex/plugins/tool',
+                 'statick_tool': '.'},
     package_data={'statick_tool': ['rsc/*'],
                   'statick_tool.plugins.discovery':
                   ['*.yapsy-plugin'],
