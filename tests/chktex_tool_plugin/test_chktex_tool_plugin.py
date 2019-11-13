@@ -3,7 +3,7 @@ import argparse
 import os
 import subprocess
 
-# import mock
+import mock
 from yapsy.PluginManager import PluginManager
 
 import statick_tool
@@ -83,43 +83,43 @@ def test_chktex_tool_plugin_parse_invalid():
     assert not issues
 
 
-#@mock.patch('statick_tool.plugins.tool.chktex_tool_plugin.subprocess.check_output')
-#def test_chktex_tool_plugin_scan_calledprocesserror(mock_subprocess_check_output):
-#    """
-#    Test what happens when a CalledProcessError is raised (usually means chktex hit an error).
-#
-#    Expected result: issues is None
-#    """
-#    mock_subprocess_check_output.side_effect = subprocess.CalledProcessError(0,
-#                                                                             '',
-#                                                                             output="mocked error")
-#    cttp = setup_chktex_tool_plugin()
-#    package = Package('valid_package', os.path.join(os.path.dirname(__file__),
-#                                                    'valid_package'))
-#    package['tex'] = [os.path.join(os.path.dirname(__file__),
-#                                   'valid_package', 'test.tex')]
-#    issues = cttp.scan(package, 'level')
-#    assert issues is None
-#
-#    mock_subprocess_check_output.side_effect = subprocess.CalledProcessError(1,
-#                                                                             '',
-#                                                                             output="mocked error")
-#    issues = cttp.scan(package, 'level')
-#    assert not issues
+@mock.patch('statick_tool.plugins.tool.chktex_tool_plugin.subprocess.check_output')
+def test_chktex_tool_plugin_scan_calledprocesserror(mock_subprocess_check_output):
+    """
+    Test what happens when a CalledProcessError is raised (usually means chktex hit an error).
+
+    Expected result: issues is None
+    """
+    mock_subprocess_check_output.side_effect = subprocess.CalledProcessError(0,
+                                                                             '',
+                                                                             output="mocked error")
+    cttp = setup_chktex_tool_plugin()
+    package = Package('valid_package', os.path.join(os.path.dirname(__file__),
+                                                    'valid_package'))
+    package['tex'] = [os.path.join(os.path.dirname(__file__),
+                                   'valid_package', 'test.tex')]
+    issues = cttp.scan(package, 'level')
+    assert issues is None
+
+    mock_subprocess_check_output.side_effect = subprocess.CalledProcessError(1,
+                                                                             '',
+                                                                             output="mocked error")
+    issues = cttp.scan(package, 'level')
+    assert not issues
 
 
-#@mock.patch('statick_tool.plugins.tool.chktex_tool_plugin.subprocess.check_output')
-#def test_chktex_tool_plugin_scan_oserror(mock_subprocess_check_output):
-#    """
-#    Test what happens when an OSError is raised (usually means chktex doesn't exist).
-#
-#    Expected result: issues is None
-#    """
-#    mock_subprocess_check_output.side_effect = OSError('mocked error')
-#    cttp = setup_chktex_tool_plugin()
-#    package = Package('valid_package', os.path.join(os.path.dirname(__file__),
-#                                                    'valid_package'))
-#    package['tex'] = [os.path.join(os.path.dirname(__file__),
-#                                   'valid_package', 'test.tex')]
-#    issues = cttp.scan(package, 'level')
-#    assert issues is None
+@mock.patch('statick_tool.plugins.tool.chktex_tool_plugin.subprocess.check_output')
+def test_chktex_tool_plugin_scan_oserror(mock_subprocess_check_output):
+    """
+    Test what happens when an OSError is raised (usually means chktex doesn't exist).
+
+    Expected result: issues is None
+    """
+    mock_subprocess_check_output.side_effect = OSError('mocked error')
+    cttp = setup_chktex_tool_plugin()
+    package = Package('valid_package', os.path.join(os.path.dirname(__file__),
+                                                    'valid_package'))
+    package['tex'] = [os.path.join(os.path.dirname(__file__),
+                                   'valid_package', 'test.tex')]
+    issues = cttp.scan(package, 'level')
+    assert issues is None
