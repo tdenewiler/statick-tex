@@ -1,1 +1,0 @@
-"""Chktex tool plugin."""

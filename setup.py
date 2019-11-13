@@ -7,29 +7,23 @@ with open('README.md') as f:
     long_description = f.read()  # pylint: disable=invalid-name
 
 TEST_DEPS = [
-    'pytest',
     'mock',
+    'pytest',
 ]
 
 EXTRAS = {
     'test': TEST_DEPS,
 }
 
-VERSION = '0.1.2'
-
 setup(
-    author='SSC Pacific',
+    author='Thomas Denewiler',
     name='statick-tex',
-    description='Tool for running static analysis tools against TeX/LaTeX.',
-    version=VERSION,
-    packages=['statick_tool',
-              'statick_tool.plugins.discovery',
-              'statick_tool.plugins.tool'],
-    package_dir={'statick_tool': '.',
-                 'statick_tool.plugins.discovery':
-                 'plugins/tex_discovery_plugin',
-                 'statick_tool.plugins.tool':
-                 'plugins/tex_tool_plugins'},
+    description='Statick analysis plugins for TeX/LaTeX files and projects.',
+    version='0.1.2',
+    packages=['statick_tool', 'statick_tool.plugins.discovery', 'statick_tool.plugins.tool'],
+    package_dir={'statick_tool.plugins.discovery': 'src/statick_tex/plugins/discovery/',
+                 'statick_tool.plugins.tool': 'src/statick_tex/plugins/tool',
+                 'statick_tool': '.'},
     package_data={'statick_tool': ['rsc/*'],
                   'statick_tool.plugins.discovery':
                   ['*.yapsy-plugin'],
@@ -49,6 +43,7 @@ setup(
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: Implementation :: PyPy",
         "Topic :: Software Development :: Testing",
     ],
 )
