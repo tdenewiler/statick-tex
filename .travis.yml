@@ -21,6 +21,7 @@ install:
   - cat install.txt | xargs sudo apt-get install -y
   - pip install -r requirements.txt
   - pip3 install -r requirements.txt
+  - pip install mypy
   - pip3 install mypy
 
 # This stage is run against everything in the matrix (so every python version)
