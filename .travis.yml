@@ -21,7 +21,6 @@ install:
   - cat install.txt | xargs sudo apt-get install -y
   - pip install -r requirements.txt
   - pip3 install -r requirements.txt
-  - pip install mypy
   - pip3 install mypy
 
 # This stage is run against everything in the matrix (so every python version)
@@ -36,9 +35,6 @@ jobs:
       # the stage name) just to run statick
     - stage: self_check
       python: '3.8'
-      install:
-        - cat install.txt | xargs sudo apt-get install -y
-        - pip install -r requirements.txt
       script:
         - statick . --profile self_check.yaml
         - mypy --ignore-missing-imports statick_tool/
