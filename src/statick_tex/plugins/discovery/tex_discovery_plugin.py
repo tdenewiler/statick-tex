@@ -8,9 +8,9 @@ import subprocess
 from collections import OrderedDict
 from typing import List
 
+from statick_tool.discovery_plugin import DiscoveryPlugin
 from statick_tool.exceptions import Exceptions
 from statick_tool.package import Package
-from statick_tool.discovery_plugin import DiscoveryPlugin
 
 
 class TexDiscoveryPlugin(DiscoveryPlugin):
