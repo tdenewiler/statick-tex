@@ -37,7 +37,7 @@ jobs:
       python: '3.8'
       script:
         - statick . --profile self_check.yaml
-        - mypy --ignore-missing-imports statick_tool/
+        - mypy --ignore-missing-imports src/
     - stage: deploy
       python: '3.8'
       provider: pypi
