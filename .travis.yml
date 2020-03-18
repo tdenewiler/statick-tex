@@ -32,8 +32,8 @@ jobs:
   include:
       # This adds a second parallel "test" stage (since we didn't specify
       # the stage name) just to run statick
-    - stage: test
-      python: '3.5'
+    - stage: self_check
+      python: '3.8'
       install:
         - cat install.txt | xargs sudo apt-get install -y
         - pip install -r requirements.txt
@@ -41,7 +41,7 @@ jobs:
         - statick . --profile self_check.yaml
         - mypy --ignore-missing-imports statick_tool/
     - stage: deploy
-      python: '3.5'
+      python: '3.8'
       provider: pypi
       user: tdenewiler
       password:
