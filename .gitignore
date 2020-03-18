@@ -15,6 +15,7 @@ Pipfile*
 
 # From tests
 .coverage
+.mypy_cache
 .pytest_cache
 .tox
 output-*/

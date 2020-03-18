@@ -2,7 +2,6 @@ dist: xenial
 sudo: required
 language: python
 python:
-  - '3.5'
   - '3.6'
   - '3.7'
   - '3.8'
@@ -21,6 +20,8 @@ before_install:
 install:
   - cat install.txt | xargs sudo apt-get install -y
   - pip install -r requirements.txt
+  - pip3 install -r requirements.txt
+  - pip3 install mypy
 
 # This stage is run against everything in the matrix (so every python version)
 script:
@@ -32,14 +33,13 @@ jobs:
   include:
       # This adds a second parallel "test" stage (since we didn't specify
       # the stage name) just to run statick
-    - stage: test
-      python: '3.5'
-      install:
-        - cat install.txt | xargs sudo apt-get install -y
-        - pip install -r requirements.txt
-      script: statick . --profile self_check.yaml
+    - stage: self_check
+      python: '3.8'
+      script:
+        - statick . --profile self_check.yaml
+        - mypy --ignore-missing-imports src/
     - stage: deploy
-      python: '3.5'
+      python: '3.8'
       provider: pypi
       user: tdenewiler
       password:
