@@ -20,9 +20,7 @@ class TexDiscoveryPlugin(DiscoveryPlugin):
         """Get name of discovery type."""
         return "tex"
 
-    def scan(
-        self, package: Package, level: str, exceptions: Exceptions = None
-    ):
+    def scan(self, package: Package, level: str, exceptions: Exceptions = None):
         """Scan package looking for TeX files."""
         tex_files = []  # type: List[str]
         globs = ["*.tex", "*.bib"]  # type: List[str]
