@@ -26,4 +26,4 @@ jobs:
 
     - name: Test with black
       run: |
-        black --check --diff src
+        black --check --diff src tests
