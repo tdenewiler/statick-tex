@@ -35,3 +35,5 @@ jobs:
     - name: Test with black
       run: |
         black --check --diff src
+      exclude:
+        - python-version: 3.5
