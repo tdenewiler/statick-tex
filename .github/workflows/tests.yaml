@@ -24,10 +24,15 @@ jobs:
         python3 -m pip install -r requirements.txt
         python3 -m pip install mypy tox tox-gh-actions
 
-    - name: Test with tox
+    - name: Tox
       run: |
         tox
 
-    - name: Test with mypy
+    - name: Mypy
       run: |
         mypy --ignore-missing-imports src/
+
+    - name: Self check
+      run: |
+        mkdir statick-output
+        ./statick . --output-directory statick-output --profile self_check.yaml
