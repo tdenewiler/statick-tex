@@ -101,3 +101,11 @@ types of reports that can be viewed with a text editor or web browser.
     mypy --ignore-missing-imports --html-report report/ --txt-report report src/
 
 It is hoped that in the future we will generate coverage reports from mypy and use those to check for regressions.
+
+### Formatting
+
+Statick code is formatted using [black](https://github.com/psf/black).
+To fix locally use
+
+    pip install black
+    black src

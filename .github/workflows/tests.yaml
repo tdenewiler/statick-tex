@@ -1,0 +1,38 @@
+name: Unit Tests
+
+on: [pull_request, push]  # NOLINT
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.5, 3.6, 3.7, 3.8]
+
+    steps:
+    - uses: actions/checkout@v2  # NOLINT
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v1
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install dependencies
+      run: |
+        python3 -m pip install --upgrade pip
+        python3 -m pip install -r requirements.txt
+        python3 -m pip install mypy tox tox-gh-actions
+
+    - name: Tox
+      run: |
+        tox
+
+    - name: Mypy
+      run: |
+        mypy --ignore-missing-imports src/
+
+    - name: Self check
+      run: |
+        mkdir statick-output
+        statick . --output-directory statick-output --profile self_check.yaml
