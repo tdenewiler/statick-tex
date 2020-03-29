@@ -20,7 +20,7 @@ class TexDiscoveryPlugin(DiscoveryPlugin):
 
     def scan(self, package: Package, level: str, exceptions: Exceptions = None):
         """Scan package looking for TeX files."""
-        tex_files = []  # type: List[str]
+        tex_files = []  # type: List[Path]
         globs = ["*.tex", "*.bib"]  # type: List[str]
 
         file_cmd_exists = True  # type: bool
