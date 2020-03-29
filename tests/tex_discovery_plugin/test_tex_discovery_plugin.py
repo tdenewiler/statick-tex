@@ -44,14 +44,12 @@ def modified_environ(*remove, **update):
         [env.pop(k) for k in remove_after]
 
 
-def test_tex_plugin_found():
+def test_tex_discovery_plugin_found():
     """Test that the plugin manager finds the TeX discovery plugin."""
     manager = PluginManager()
     # Get the path to statick_tool/__init__.py, get the directory part, and
     # add 'plugins' to that to get the standard plugins dir
-    manager.setPluginPlaces(
-        [os.path.join(os.path.dirname(statick_tool.__file__), "plugins")]
-    )
+    manager.setPluginPlaces([Path(os.path.dirname(statick_tool.__file__), "plugins")])
     manager.setCategoriesFilter(
         {"Discovery": DiscoveryPlugin,}
     )
@@ -68,26 +66,24 @@ def test_tex_plugin_found():
     )
 
 
-def test_tex_plugin_scan_valid():
+def test_tex_discovery_plugin_scan_valid():
     """Test that the TeX discovery plugin finds valid TeX source and bib files."""
-    package = Package(
-        "valid_package", os.path.join(os.path.dirname(__file__), "valid_package")
-    )
+    package = Package("valid_package", Path(os.path.dirname(__file__), "valid_package"))
     tdp = TexDiscoveryPlugin()
     tdp.scan(package, "level")
     expected = ["test.tex", "test.bib", Path("ignore_this/ignoreme.tex")]
     if tdp.file_command_exists():
         expected += ["oddextensiontex.source"]
     # We have to add the path to each of the above...yuck
-    expected_fullpath = [os.path.join(package.path, filename) for filename in expected]
+    expected_fullpath = [Path(package.path, filename) for filename in expected]
     # Neat trick to verify that two unordered lists are the same
     assert set(package["tex"]) == set(expected_fullpath)
 
 
-def test_tex_plugin_scan_invalid():
+def test_tex_discovery_plugin_scan_invalid():
     """Test that the TeX discovery plugin doesn't find non-TeX files."""
     package = Package(
-        "invalid_package", os.path.join(os.path.dirname(__file__), "invalid_package")
+        "invalid_package", Path(os.path.dirname(__file__), "invalid_package")
     )
     tdp = TexDiscoveryPlugin()
     tdp.scan(package, "level")
@@ -97,16 +93,12 @@ def test_tex_plugin_scan_invalid():
 def test_tex_discovery_plugin_scan_exceptions():
     """Test that the tex discovery plugin properly respects exceptions."""
     tdp = TexDiscoveryPlugin()
-    package = Package(
-        "valid_package", os.path.join(os.path.dirname(__file__), "valid_package")
-    )
-    exceptions = Exceptions(os.path.join(os.path.dirname(__file__), "exceptions.yaml"))
+    package = Package("valid_package", Path(os.path.dirname(__file__), "valid_package"))
+    exceptions = Exceptions(Path(os.path.dirname(__file__), "exceptions.yaml"))
     tdp.scan(package, "level", exceptions)
     expected_src = ["test.tex", "test.bib", "oddextensiontex.source"]
     # We have to add the path to each of the above...yuck
-    expected_src_fullpath = [
-        os.path.join(package.path, filename) for filename in expected_src
-    ]
+    expected_src_fullpath = [Path(package.path, filename) for filename in expected_src]
     # Neat trick to verify that two unordered lists are the same
     assert set(package["tex"]) == set(expected_src_fullpath)
 
@@ -121,13 +113,11 @@ def test_tex_discovery_plugin_no_file_cmd():
     with modified_environ(PATH=""):
         tdp = TexDiscoveryPlugin()
         package = Package(
-            "valid_package", os.path.join(os.path.dirname(__file__), "valid_package")
+            "valid_package", Path(os.path.dirname(__file__), "valid_package")
         )
         tdp.scan(package, "level")
         expected = ["test.tex", "test.bib", Path("ignore_this/ignoreme.tex")]
         # We have to add the path to each of the above...yuck
-        expected_fullpath = [
-            os.path.join(package.path, filename) for filename in expected
-        ]
+        expected_fullpath = [Path(package.path, filename) for filename in expected]
         # Neat trick to verify that two unordered lists are the same
         assert set(package["tex"]) == set(expected_fullpath)

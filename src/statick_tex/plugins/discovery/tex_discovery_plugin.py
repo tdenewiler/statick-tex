@@ -3,6 +3,7 @@ import fnmatch
 import os
 import subprocess
 from collections import OrderedDict
+from pathlib import Path
 from typing import List
 
 from statick_tool.discovery_plugin import DiscoveryPlugin
@@ -30,12 +31,12 @@ class TexDiscoveryPlugin(DiscoveryPlugin):
         for root, _, files in os.walk(package.path):
             for glob in globs:
                 for f in fnmatch.filter(files, glob):
-                    full_path = os.path.join(root, f)
-                    tex_files.append(os.path.abspath(full_path))
+                    full_path = Path(root, f)
+                    tex_files.append(full_path)
 
             if file_cmd_exists:
                 for f in files:
-                    full_path = os.path.join(root, f)
+                    full_path = Path(root, f)
                     output = subprocess.check_output(
                         ["file", full_path], universal_newlines=True
                     )
@@ -48,7 +49,7 @@ class TexDiscoveryPlugin(DiscoveryPlugin):
                         or "LaTeX 2e document" in output
                     ):
                         # pylint: enable=unsupported-membership-test
-                        tex_files.append(os.path.abspath(full_path))
+                        tex_files.append(full_path)
 
         tex_files = list(OrderedDict.fromkeys(tex_files))
 
