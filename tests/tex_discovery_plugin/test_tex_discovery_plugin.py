@@ -49,7 +49,9 @@ def test_tex_discovery_plugin_found():
     manager = PluginManager()
     # Get the path to statick_tool/__init__.py, get the directory part, and
     # add 'plugins' to that to get the standard plugins dir
-    manager.setPluginPlaces([Path(os.path.dirname(statick_tool.__file__), "plugins")])
+    manager.setPluginPlaces(
+        [os.path.join(os.path.dirname(statick_tool.__file__), "plugins")]
+    )
     manager.setCategoriesFilter(
         {"Discovery": DiscoveryPlugin,}
     )
