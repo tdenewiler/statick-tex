@@ -14,8 +14,10 @@ MANIFEST
 Pipfile*
 
 # From tests
+.coverage.*
 .coverage
 .mypy_cache
 .pytest_cache
 .tox
+coverage.xml
 output-*/

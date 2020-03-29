@@ -25,10 +25,8 @@ setup(
                  'statick_tool.plugins.tool': 'src/statick_tex/plugins/tool',
                  'statick_tool': '.'},
     package_data={'statick_tool': ['rsc/*'],
-                  'statick_tool.plugins.discovery':
-                  ['*.yapsy-plugin'],
-                  'statick_tool.plugins.tool':
-                  ['*.yapsy-plugin']},
+                  'statick_tool.plugins.discovery': ['*.yapsy-plugin'],
+                  'statick_tool.plugins.tool':['*.yapsy-plugin']},
     long_description=long_description,
     long_description_content_type='text/markdown',
     install_requires=['statick'],
