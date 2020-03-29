@@ -19,7 +19,7 @@ setup(
     author='Thomas Denewiler',
     name='statick-tex',
     description='Statick analysis plugins for TeX/LaTeX files and projects.',
-    version='0.2.0',
+    version='0.2.1',
     packages=['statick_tool', 'statick_tool.plugins.discovery', 'statick_tool.plugins.tool'],
     package_dir={'statick_tool.plugins.discovery': 'src/statick_tex/plugins/discovery',
                  'statick_tool.plugins.tool': 'src/statick_tex/plugins/tool',
@@ -39,7 +39,6 @@ setup(
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
-        "Programming Language :: Python :: Implementation :: PyPy",
         "Topic :: Software Development :: Testing",
     ],
 )
