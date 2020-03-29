@@ -1,6 +1,6 @@
 name: Publish Python 🐍 distributions 📦 to PyPI and TestPyPI
 
-on: tag
+on: push
 
 jobs:
   build-n-publish:
@@ -26,11 +26,13 @@ jobs:
 
     - name: Publish distribution 📦 to Test PyPI
       uses: pypa/gh-action-pypi-publish@master
+      if: startsWith(github.event.ref, 'refs/tags')
       with:
         password: ${{ secrets.PYPI_TEST_TOKEN }}
         repository_url: https://test.pypi.org/legacy/
 
     - name: Publish distribution 📦 to PyPI
       uses: pypa/gh-action-pypi-publish@master
+      if: startsWith(github.event.ref, 'refs/tags')
       with:
         password: ${{ secrets.PYPI_TOKEN }}
