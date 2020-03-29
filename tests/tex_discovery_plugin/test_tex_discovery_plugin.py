@@ -3,6 +3,7 @@ import contextlib
 import os
 
 from yapsy.PluginManager import PluginManager
+from pathlib import Path
 
 import statick_tool
 from statick_tool.discovery_plugin import DiscoveryPlugin
@@ -74,7 +75,7 @@ def test_tex_plugin_scan_valid():
     )
     tdp = TexDiscoveryPlugin()
     tdp.scan(package, "level")
-    expected = ["test.tex", "test.bib", os.path.join("ignore_this", "ignoreme.tex")]
+    expected = ["test.tex", "test.bib", Path("ignore_this/ignoreme.tex")]
     if tdp.file_command_exists():
         expected += ["oddextensiontex.source"]
     # We have to add the path to each of the above...yuck
@@ -123,7 +124,7 @@ def test_tex_discovery_plugin_no_file_cmd():
             "valid_package", os.path.join(os.path.dirname(__file__), "valid_package")
         )
         tdp.scan(package, "level")
-        expected = ["test.tex", "test.bib", "ignore_this/ignoreme.tex"]
+        expected = ["test.tex", "test.bib", Path("ignore_this/ignoreme.tex")]
         # We have to add the path to each of the above...yuck
         expected_fullpath = [
             os.path.join(package.path, filename) for filename in expected
