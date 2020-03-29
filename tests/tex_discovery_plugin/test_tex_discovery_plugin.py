@@ -69,7 +69,9 @@ def test_tex_discovery_plugin_found():
 
 def test_tex_discovery_plugin_scan_valid():
     """Test that the TeX discovery plugin finds valid TeX source and bib files."""
-    package = Package("valid_package", os.path.join(os.path.dirname(__file__), "valid_package"))
+    package = Package(
+        "valid_package", os.path.join(os.path.dirname(__file__), "valid_package")
+    )
     tdp = TexDiscoveryPlugin()
     tdp.scan(package, "level")
     expected = ["test.tex", "test.bib", os.path.join("ignore_this/ignoreme.tex")]
@@ -94,12 +96,16 @@ def test_tex_discovery_plugin_scan_invalid():
 def test_tex_discovery_plugin_scan_exceptions():
     """Test that the tex discovery plugin properly respects exceptions."""
     tdp = TexDiscoveryPlugin()
-    package = Package("valid_package", os.path.join(os.path.dirname(__file__), "valid_package"))
+    package = Package(
+        "valid_package", os.path.join(os.path.dirname(__file__), "valid_package")
+    )
     exceptions = Exceptions(os.path.join(os.path.dirname(__file__), "exceptions.yaml"))
     tdp.scan(package, "level", exceptions)
     expected_src = ["test.tex", "test.bib", "oddextensiontex.source"]
     # We have to add the path to each of the above...yuck
-    expected_src_fullpath = [os.path.join(package.path, filename) for filename in expected_src]
+    expected_src_fullpath = [
+        os.path.join(package.path, filename) for filename in expected_src
+    ]
     # Neat trick to verify that two unordered lists are the same
     assert set(package["tex"]) == set(expected_src_fullpath)
 
@@ -119,6 +125,8 @@ def test_tex_discovery_plugin_no_file_cmd():
         tdp.scan(package, "level")
         expected = ["test.tex", "test.bib", os.path.join("ignore_this", "ignoreme.tex")]
         # We have to add the path to each of the above...yuck
-        expected_fullpath = [os.path.join(package.path, filename) for filename in expected]
+        expected_fullpath = [
+            os.path.join(package.path, filename) for filename in expected
+        ]
         # Neat trick to verify that two unordered lists are the same
         assert set(package["tex"]) == set(expected_fullpath)
