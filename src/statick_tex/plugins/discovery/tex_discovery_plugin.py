@@ -3,7 +3,6 @@ import fnmatch
 import os
 import subprocess
 from collections import OrderedDict
-from pathlib import Path
 from typing import List
 
 from statick_tool.discovery_plugin import DiscoveryPlugin
@@ -20,7 +19,7 @@ class TexDiscoveryPlugin(DiscoveryPlugin):
 
     def scan(self, package: Package, level: str, exceptions: Exceptions = None):
         """Scan package looking for TeX files."""
-        tex_files = []  # type: List[Path]
+        tex_files = []  # type: List[str]
         globs = ["*.tex", "*.bib"]  # type: List[str]
 
         file_cmd_exists = True  # type: bool
@@ -31,12 +30,12 @@ class TexDiscoveryPlugin(DiscoveryPlugin):
         for root, _, files in os.walk(package.path):
             for glob in globs:
                 for f in fnmatch.filter(files, glob):
-                    full_path = Path(root, f)
+                    full_path = os.path.join(root, f)
                     tex_files.append(full_path)
 
             if file_cmd_exists:
                 for f in files:
-                    full_path = Path(root, f)
+                    full_path = os.path.join(root, f)
                     output = subprocess.check_output(
                         ["file", full_path], universal_newlines=True
                     )
@@ -56,6 +55,7 @@ class TexDiscoveryPlugin(DiscoveryPlugin):
         print("  {} TeX files found.".format(len(tex_files)))
         if exceptions:
             original_file_count = len(tex_files)  # type: int
+            package.path = str(package.path)
             tex_files = exceptions.filter_file_exceptions_early(package, tex_files)
             if original_file_count > len(tex_files):
                 print(
