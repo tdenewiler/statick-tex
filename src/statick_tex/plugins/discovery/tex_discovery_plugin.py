@@ -31,7 +31,7 @@ class TexDiscoveryPlugin(DiscoveryPlugin):
             for glob in globs:
                 for f in fnmatch.filter(files, glob):
                     full_path = os.path.join(root, f)
-                    tex_files.append(full_path)
+                    tex_files.append(os.path.abspath(full_path))
 
             if file_cmd_exists:
                 for f in files:
@@ -48,14 +48,13 @@ class TexDiscoveryPlugin(DiscoveryPlugin):
                         or "LaTeX 2e document" in output
                     ):
                         # pylint: enable=unsupported-membership-test
-                        tex_files.append(full_path)
+                        tex_files.append(os.path.abspath(full_path))
 
         tex_files = list(OrderedDict.fromkeys(tex_files))
 
         print("  {} TeX files found.".format(len(tex_files)))
         if exceptions:
             original_file_count = len(tex_files)  # type: int
-            package.path = str(package.path)
             tex_files = exceptions.filter_file_exceptions_early(package, tex_files)
             if original_file_count > len(tex_files):
                 print(
