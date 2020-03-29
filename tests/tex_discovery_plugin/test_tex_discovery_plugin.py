@@ -1,9 +1,9 @@
 """Unit tests for the TeX discovery plugin."""
 import contextlib
 import os
+from pathlib import Path
 
 from yapsy.PluginManager import PluginManager
-from pathlib import Path
 
 import statick_tool
 from statick_tool.discovery_plugin import DiscoveryPlugin
