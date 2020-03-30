@@ -51,6 +51,7 @@ jobs:
       - name: Publish documentation
         uses: JacksonMaxfield/github-pages-deploy-action-python@master
         env:
+          ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           BASE_BRANCH: master
           BRANCH: gh-pages
           FOLDER: docs/build/html
