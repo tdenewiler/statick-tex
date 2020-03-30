@@ -1,10 +1,10 @@
 ---
 name: Publish Python 🐍 distributions 📦 to PyPI and TestPyPI
 
-on:  # NOLINT
-  push:
-    tags:
-      - '*'
+on: [push]  # NOLINT
+#  push:
+#    tags:
+#      - "*"
 
 jobs:
   build-n-publish:
@@ -20,23 +20,38 @@ jobs:
           python-version: 3.8
 
       - name: Install tools
+        if: startsWith(github.event.ref, 'refs/tags')
         run: |
           python -m pip install --upgrade setuptools
           python -m pip install --upgrade wheel
 
       - name: Build a binary wheel and a source tarball
+        if: startsWith(github.event.ref, 'refs/tags')
         run: |
           python setup.py sdist bdist_wheel
 
       - name: Publish distribution 📦 to Test PyPI
-        uses: pypa/gh-action-pypi-publish@master
         if: startsWith(github.event.ref, 'refs/tags')
+        uses: pypa/gh-action-pypi-publish@master
         with:
           password: ${{ secrets.PYPI_TEST_TOKEN }}
           repository_url: https://test.pypi.org/legacy/
 
       - name: Publish distribution 📦 to PyPI
-        uses: pypa/gh-action-pypi-publish@master
         if: startsWith(github.event.ref, 'refs/tags')
+        uses: pypa/gh-action-pypi-publish@master
         with:
           password: ${{ secrets.PYPI_TOKEN }}
+
+      - name: Sphinx lint
+        uses: ammaraskar/sphinx-action@master
+        with:
+          docs-folder: "docs/"
+
+      - name: Publish documentation
+        uses: JacksonMaxfield/github-pages-deploy-action-python@master
+        env:
+          ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          BASE_BRANCH: master
+          BRANCH: gh-pages
+          FOLDER: docs/build/html
