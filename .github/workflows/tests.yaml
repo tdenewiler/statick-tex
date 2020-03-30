@@ -67,4 +67,5 @@ jobs:
       - name: Statick markdown
         if: matrix.os == 'ubuntu-latest'
         run: |
-          statick . --user-paths statick_tool --profile documentation.yaml
+          cp .markdownlintrc ~/.markdownlintrc
+          statick . --profile documentation.yaml
