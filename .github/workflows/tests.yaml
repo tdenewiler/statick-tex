@@ -39,6 +39,11 @@ jobs:
           sudo apt update
           sudo apt install chktex
           sudo apt install lacheck
+          sudo apt install nodejs-dev
+          sudo apt install npm
+          sudo npm install -g n
+          sudo n stable
+          sudo npm install -g markdownlint-cli@0.21.0
 
       - name: Tox
         run: |
@@ -58,4 +63,9 @@ jobs:
         run: |
           mkdir statick-output
           statick . --output-directory statick-output --profile self_check.yaml
+
+      - name: Statick markdown
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          mkdir statick-output
           statick . --user-paths statick_tool --profile documentation.yaml
