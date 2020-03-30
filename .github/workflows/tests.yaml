@@ -27,6 +27,7 @@ jobs:
           python -m pip install --upgrade wheel
           python -m pip install --upgrade coverage
           python -m pip install --upgrade mypy
+          python -m pip install --upgrade statick-md
           python -m pip install --upgrade tox
           python -m pip install --upgrade tox-gh-actions
           python -m pip install --upgrade virtualenv
@@ -57,3 +58,4 @@ jobs:
         run: |
           mkdir statick-output
           statick . --output-directory statick-output --profile self_check.yaml
+          statick . --user-paths statick_tool --profile documentation.yaml

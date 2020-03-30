@@ -34,9 +34,9 @@ You can also clone the repository and use it locally.
 The most common usage is to use statick and statick-tex from pip.
 In that case your directory structure will look like the following:
 
-  - doc
-    - latex-project
-    - statick-output
+- doc
+  - latex-project
+  - statick-output
 
 To run with the default configuration for the statick-tex tools use:
 
@@ -49,12 +49,12 @@ This is usually done to run a different set of tools than are called out in the 
 For this case you will have to add the new Statick configuration somewhere.
 This example will have custom exceptions in the latex-project, such that the directory structure is:
 
-  - doc
-    - latex-project
-      - statick-config
-        - rsc
-          - exceptions.yaml
-    - statick-output
+- doc
+  - latex-project
+    - statick-config
+      - rsc
+        - exceptions.yaml
+  - statick-output
 
 For this setup you will run the following:
 
@@ -65,16 +65,17 @@ For this setup you will run the following:
 The last type of setup will be to have all of the tools available from cloning repositories, not installing from pip.
 The directory structure will look like:
 
-  - doc
-    - latex-project
-      - statick-config
-        - rsc
-          - exceptions.yaml
-    - statick-output
-    - statick
-    - statick-tex
+- doc
+  - latex-project
+    - statick-config
+      - rsc
+        - exceptions.yaml
+  - statick-output
+  - statick
+  - statick-tex
 
-Using the example where we want to override the default exceptions with custom ones in the latex-project, the command to run would be:
+Using the example where we want to override the default exceptions with custom ones in the latex-project, the command
+to run would be:
 
     ./statick/statick latex-project/ statick-output/ --user-paths statick-tex/,latex-project/statick-config/ --profile tex-profile.yaml
 
@@ -84,7 +85,8 @@ If you write a new feature for Statick or are fixing a bug, you are strongly enc
 In particular, it is much easier to test whether a bug is fixed (and identify future regressions) if you can add a small
 unit test which replicates the bug.
 
-Before submitting a change, please run tox to check that you have not introduced any regressions or violated any code style guidelines.
+Before submitting a change, please run tox to check that you have not introduced any regressions or violated any code
+style guidelines.
 
 ### Mypy
 
