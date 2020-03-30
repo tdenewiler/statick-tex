@@ -34,7 +34,7 @@ jobs:
           python -m pip install -r requirements.txt
 
       - name: Install tools (Linux)
-        if: matrix.os == 'ubuntu-latest'
+        if: matrix.os == 'ubuntu-18.04'
         run: |
           sudo apt update
           sudo apt install chktex
@@ -50,7 +50,7 @@ jobs:
           python -m tox
 
       - name: Upload coverage to Codecov
-        if: matrix.os == 'ubuntu-latest'
+        if: matrix.os == 'ubuntu-18.04'
         uses: codecov/codecov-action@v1
         with:
           fail_ci_if_error: true
@@ -60,7 +60,7 @@ jobs:
           mypy --ignore-missing-imports src/
 
       - name: Statick markdown
-        if: matrix.os == 'ubuntu-latest'
+        if: matrix.os == 'ubuntu-18.04'
         run: |
           statick . --user-paths statick_config --profile documentation.yaml
 
