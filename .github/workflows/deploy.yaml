@@ -72,10 +72,9 @@ jobs:
         with:
           docs-folder: "docs/"
 
-      - name: Publish documentation
-        uses: JacksonMaxfield/github-pages-deploy-action-python@master
-        env:
-          ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          BASE_BRANCH: master
-          BRANCH: gh-pages
-          FOLDER: docs/build/html
+      - name: Github Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs/build/html
+          publish_branch: gh-pages
