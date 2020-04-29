@@ -1,10 +1,10 @@
 ---
 name: Publish Python 🐍 distributions 📦 to PyPI and TestPyPI
 
-on: [push]  # NOLINT
-#  push:
-#    tags:
-#      - "*"
+on:  # NOLINT
+  push:
+    tags:
+      - "*"
 
 jobs:
   build-n-publish:
