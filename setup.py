@@ -8,11 +8,11 @@ with open('README.md') as f:
 
 TEST_DEPS = [
     'mock',
+    'pre-commit',
     'pytest',
 ]
 
 EXTRAS = {
-    'pre-commit',
     'test': TEST_DEPS,
 }
 
