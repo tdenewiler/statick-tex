@@ -63,8 +63,15 @@ jobs:
           sudo apt update
           sudo apt install chktex
           sudo apt install lacheck
-          sudo apt install nodejs-dev
-          sudo apt install npm
+
+      # Have to install newer version from non-apt source due to SSL library compatibility issues.
+      - name: Install node
+        if: matrix.os == 'ubuntu-18.04'
+        run: |
+          sudo apt install curl
+          curl -sL https://deb.nodesource.com/setup_10.x -o nodesource_setup.sh
+          sudo bash nodesource_setup.sh
+          sudo apt install nodejs
           sudo npm install -g n
           sudo n stable
           sudo npm install -g markdownlint-cli@0.21.0
@@ -86,7 +93,7 @@ jobs:
       - name: Statick markdown
         if: matrix.os == 'ubuntu-18.04'
         run: |
-          statick . --user-paths statick_config --profile documentation.yaml
+          statick . --profile documentation.yaml
 
       - name: Self check
         run: |
