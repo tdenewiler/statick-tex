@@ -12,6 +12,7 @@ TEST_DEPS = [
 ]
 
 EXTRAS = {
+    'pre-commit',
     'test': TEST_DEPS,
 }
 
