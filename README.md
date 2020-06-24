@@ -40,7 +40,7 @@ In that case your directory structure will look like the following:
 
 To run with the default configuration for the statick-tex tools use:
 
-    statick latex-project/ statick-output/ --profile tex-profile.yaml
+    statick latex-project/ --output-directory statick-output/ --profile tex-profile.yaml
 
 ### Pip Install and Custom Configuration
 
@@ -58,7 +58,7 @@ This example will have custom exceptions in the latex-project, such that the dir
 
 For this setup you will run the following:
 
-    statick latex-project/ statick-output/ --user-paths latex-project/statick-config/ --profile tex-profile.yaml
+    statick latex-project/ --output-directory statick-output/ --user-paths latex-project/statick-config/ --profile tex-profile.yaml
 
 ### Source Install and Custom Configuration
 
@@ -77,7 +77,7 @@ The directory structure will look like:
 Using the example where we want to override the default exceptions with custom ones in the latex-project, the command
 to run would be:
 
-    ./statick/statick latex-project/ statick-output/ --user-paths statick-tex/,latex-project/statick-config/ --profile tex-profile.yaml
+    ./statick/statick latex-project/ --output-directory statick-output/ --user-paths statick-tex/,latex-project/statick-config/ --profile tex-profile.yaml
 
 ## Tests and Contributing
 
