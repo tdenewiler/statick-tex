@@ -97,7 +97,7 @@ types of reports that can be viewed with a text editor or web browser.
 
     pip install mypy
     mkdir report
-    mypy --ignore-missing-imports --html-report report/ --txt-report report src/
+    mypy --ignore-missing-imports --strict --html-report report/ --txt-report report src/
 
 It is hoped that in the future we will generate coverage reports from mypy and use those to check for regressions.
 
