@@ -35,30 +35,30 @@ The most common usage is to use statick and statick-tex from pip.
 In that case your directory structure will look like the following:
 
 - doc
-  - latex-project
-  - statick-output
+  - project
+  - output
 
 To run with the default configuration for the statick-tex tools use:
 
-    statick latex-project/ statick-output/ --profile tex-profile.yaml
+    statick project/ --output-directory output/ --profile tex-profile.yaml
 
 ### Pip Install and Custom Configuration
 
 There are times when you will want to have a custom Statick configuration.
 This is usually done to run a different set of tools than are called out in the default profile, or to add exceptions.
 For this case you will have to add the new Statick configuration somewhere.
-This example will have custom exceptions in the latex-project, such that the directory structure is:
+This example will have custom exceptions in the project, such that the directory structure is:
 
 - doc
-  - latex-project
+  - project
     - statick-config
       - rsc
         - exceptions.yaml
-  - statick-output
+  - output
 
 For this setup you will run the following:
 
-    statick latex-project/ statick-output/ --user-paths latex-project/statick-config/ --profile tex-profile.yaml
+    statick project/ --output-directory output/ --user-paths project/statick-config/ --profile tex-profile.yaml
 
 ### Source Install and Custom Configuration
 
@@ -66,18 +66,18 @@ The last type of setup will be to have all of the tools available from cloning r
 The directory structure will look like:
 
 - doc
-  - latex-project
+  - project
     - statick-config
       - rsc
         - exceptions.yaml
-  - statick-output
+  - output
   - statick
   - statick-tex
 
-Using the example where we want to override the default exceptions with custom ones in the latex-project, the command
+Using the example where we want to override the default exceptions with custom ones in the project, the command
 to run would be:
 
-    ./statick/statick latex-project/ statick-output/ --user-paths statick-tex/,latex-project/statick-config/ --profile tex-profile.yaml
+    ./statick/statick project/ --output-directory output --user-paths statick-tex,project/statick-config --profile tex-profile.yaml
 
 ## Tests and Contributing
 
@@ -97,7 +97,7 @@ types of reports that can be viewed with a text editor or web browser.
 
     pip install mypy
     mkdir report
-    mypy --ignore-missing-imports --html-report report/ --txt-report report src/
+    mypy --ignore-missing-imports --strict --html-report report/ --txt-report report src/
 
 It is hoped that in the future we will generate coverage reports from mypy and use those to check for regressions.
 
