@@ -12,6 +12,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Removed
 
+## v0.2.2 - 2020-10-26
+
+### Added
+
+- Documentation is generated and published to GitHub Pages on new tags.
+- Tests are run on Ubuntu 16.04, 18.04, and 20.04 in addition to previous operating systems.
+- The `--strict` flag is used for Mypy.
+- Markdown linting using statick-md.
+
+### Fixed
+
+- Tox configuration updated so that unit tests continue working.
+- Limit discovery plugins run on default levels to speed up Statick.
+
 ## v0.2.1 - 2020-03-29
 
 ### Added
