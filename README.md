@@ -1,7 +1,6 @@
 # Statick TeX/LaTeX Plugins
 
 ![Unit Tests](https://github.com/tdenewiler/statick-tex/workflows/Unit%20Tests/badge.svg)
-![Black](https://github.com/tdenewiler/statick-tex/workflows/Black%20Formatting/badge.svg)
 [![PyPI version](https://badge.fury.io/py/statick-tex.svg)](https://badge.fury.io/py/statick-tex)
 [![Codecov](https://codecov.io/gh/tdenewiler/statick-tex/branch/master/graphs/badge.svg)](https://codecov.io/gh/tdenewiler/statick-tex/)
 ![Python Versions](https://img.shields.io/pypi/pyversions/statick-tex.svg)
