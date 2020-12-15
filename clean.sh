@@ -1,5 +1,5 @@
 #!/bin/bash
 
-rm -rf build/ dist/ .tox/ output-py* statick_output/* */*.egg-info *.egg-info *.log
-find . -name __pycache__ | xargs rm -rf
-find . -name \*.pyc | xargs rm -f
+rm -rf build/ dist/ output-py* .pytest_cache statick_tex.egg-info/ statick_output/* .tox/
+find . -type d -name .mypy_cache -exec rm -rf {} +;
+find . -type d -name __pycache__ -exec rm -rf {} +;
