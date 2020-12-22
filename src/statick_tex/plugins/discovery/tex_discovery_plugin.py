@@ -27,7 +27,9 @@ class TexDiscoveryPlugin(DiscoveryPlugin):  # type: ignore
             if file_dict["name"].endswith(tex_extensions):
                 tex_files.append(file_dict["path"])
 
-            if any(item in file_dict["file_cmd_out"] for item in tex_output) and not file_dict["name"].endswith(tex_ignore_extensions):
+            if any(
+                item in file_dict["file_cmd_out"] for item in tex_output
+            ) and not file_dict["name"].endswith(tex_ignore_extensions):
                 tex_files.append(file_dict["path"])
 
         tex_files = list(OrderedDict.fromkeys(tex_files))
