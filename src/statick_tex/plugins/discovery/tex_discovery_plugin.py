@@ -22,9 +22,9 @@ class TexDiscoveryPlugin(DiscoveryPlugin):  # type: ignore
         tex_files = []  # type: List[str]
         tex_extensions = (".tex", ".bib")  # type: Tuple[str, str]
         tex_ignore_extensions = (".sty", ".log", ".cls")
-        tex_output = ["LaTeX document", "BibTex text file", "LaTeX 2e document"]
+        tex_output = ["latex document", "bibtex text file", "latex 2e document"]
 
-        self.scan_once(package, level, exceptions)
+        self.find_files(package)
 
         for file_dict in package.files.values():
             if file_dict["name"].endswith(tex_extensions):
