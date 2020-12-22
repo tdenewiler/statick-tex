@@ -1,9 +1,6 @@
 """Discover TeX files to analyze."""
-import fnmatch
-import os
-import subprocess
 from collections import OrderedDict
-from typing import Tuple
+from typing import List, Tuple
 
 from statick_tool.discovery_plugin import DiscoveryPlugin
 from statick_tool.exceptions import Exceptions
