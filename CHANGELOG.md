@@ -12,6 +12,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Removed
 
+## v0.2.3 - 2020-12-22
+
+### Added
+
+- Python 3.9 is now supported and tested.
+- Use new discovery plugin cache of file information instead of walking the package directory structure
+  independently.
+  Provides large speed improvement in discovery phase (about 3x faster). (@xydesa)
+
 ## v0.2.2 - 2020-10-26
 
 ### Added
