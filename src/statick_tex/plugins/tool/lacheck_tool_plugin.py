@@ -34,7 +34,7 @@ class LacheckToolPlugin(ToolPlugin):  # type: ignore
             except subprocess.CalledProcessError as ex:
                 # Return code 1 just means "found problems"
                 if ex.returncode != 1:
-                    logging.warning("Problem {}".format(ex.returncode))
+                    logging.warning("Problem %d", ex.returncode)
                     logging.warning("%s exception: %s", self.get_name(), ex.output)
                     return None
                 output = ex.output
