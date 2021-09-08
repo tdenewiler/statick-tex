@@ -91,10 +91,6 @@ jobs:
         run: |
           mypy --ignore-missing-imports --strict src/
 
-      - name: Test with black
-        run: >-
-          black --check --diff src tests
-
       - name: Statick markdown
         if: matrix.os == 'ubuntu-18.04' || matrix.os == 'ubuntu-20.04'
         run: |
