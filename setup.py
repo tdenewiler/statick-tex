@@ -3,7 +3,7 @@
 
 from setuptools import setup
 
-with open("README.md") as fid:
+with open("README.md", encoding="utf-8") as fid:
     long_description = fid.read()  # pylint: disable=invalid-name
 
 TEST_DEPS = [
@@ -20,7 +20,7 @@ setup(
     author="Thomas Denewiler",
     name="statick-tex",
     description="Statick analysis plugins for TeX/LaTeX files and projects.",
-    version="0.2.2",
+    version="0.2.4",
     packages=[
         "statick_tool",
         "statick_tool.plugins.discovery",
@@ -44,11 +44,11 @@ setup(
     url="https://github.com/tdenewiler/statick-tex",
     classifiers=[
         "License :: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication",
-        "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
         "Topic :: Software Development :: Quality Assurance",
         "Topic :: Software Development :: Testing",
         "Typing :: Typed",

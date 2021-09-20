@@ -1,9 +1,7 @@
 """Discover TeX files to analyze."""
-import fnmatch
-import os
-import subprocess
+import logging
 from collections import OrderedDict
-from typing import List
+from typing import List, Tuple
 
 from statick_tool.discovery_plugin import DiscoveryPlugin
 from statick_tool.exceptions import Exceptions
@@ -20,47 +18,30 @@ class TexDiscoveryPlugin(DiscoveryPlugin):  # type: ignore
     def scan(self, package: Package, level: str, exceptions: Exceptions = None) -> None:
         """Scan package looking for TeX files."""
         tex_files = []  # type: List[str]
-        globs = ["*.tex", "*.bib"]  # type: List[str]
+        tex_extensions = (".tex", ".bib")  # type: Tuple[str, str]
+        tex_ignore_extensions = (".sty", ".log", ".cls")
+        tex_output = ["latex document", "bibtex text file", "latex 2e document"]
 
-        file_cmd_exists = True  # type: bool
-        if not DiscoveryPlugin.file_command_exists():
-            file_cmd_exists = False
+        self.find_files(package)
 
-        root = ""  # type: str
-        for root, _, files in os.walk(package.path):
-            for glob in globs:
-                for f in fnmatch.filter(files, glob):
-                    full_path = os.path.join(root, f)
-                    tex_files.append(os.path.abspath(full_path))
+        for file_dict in package.files.values():
+            if file_dict["name"].endswith(tex_extensions):
+                tex_files.append(file_dict["path"])
 
-            if file_cmd_exists:
-                for f in files:
-                    full_path = os.path.join(root, f)
-                    output = subprocess.check_output(
-                        ["file", full_path], universal_newlines=True
-                    )
-                    if f.endswith(".sty") or f.endswith(".log") or f.endswith(".cls"):
-                        continue
-                    # pylint: disable=unsupported-membership-test
-                    if (
-                        "LaTeX document" in output
-                        or "BibTeX text file" in output
-                        or "LaTeX 2e document" in output
-                    ):
-                        # pylint: enable=unsupported-membership-test
-                        tex_files.append(os.path.abspath(full_path))
+            if any(
+                item in file_dict["file_cmd_out"] for item in tex_output
+            ) and not file_dict["name"].endswith(tex_ignore_extensions):
+                tex_files.append(file_dict["path"])
 
         tex_files = list(OrderedDict.fromkeys(tex_files))
 
-        print("  {} TeX files found.".format(len(tex_files)))
+        logging.info("  %d TeX files found.", len(tex_files))
         if exceptions:
             original_file_count = len(tex_files)  # type: int
             tex_files = exceptions.filter_file_exceptions_early(package, tex_files)
             if original_file_count > len(tex_files):
-                print(
-                    "  After filtering, {} TeX files will be scanned.".format(
-                        len(tex_files)
-                    )
+                logging.info(
+                    "  After filtering, %d TeX files will be scanned.", len(tex_files)
                 )
 
         package["tex"] = tex_files
