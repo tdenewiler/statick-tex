@@ -27,12 +27,12 @@ setup(
         "statick_tool.plugins.tool",
     ],
     package_dir={
+        "statick_tool": ".",
         "statick_tool.plugins.discovery": "src/statick_tex/plugins/discovery",
         "statick_tool.plugins.tool": "src/statick_tex/plugins/tool",
-        "statick_tool": ".",
     },
     package_data={
-        "statick_tool": ["rsc/*"],
+        "statick_tool": ["rsc/.*", "rsc/*"],
         "statick_tool.plugins.discovery": ["*.yapsy-plugin"],
         "statick_tool.plugins.tool": ["*.yapsy-plugin"],
     },
@@ -49,6 +49,9 @@ setup(
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
+        "Topic :: Software Development :: Quality Assurance",
         "Topic :: Software Development :: Testing",
+        "Topic :: Text Processing :: Markup :: LaTeX",
+        "Typing :: Typed",
     ],
 )
