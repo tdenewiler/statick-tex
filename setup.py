@@ -51,6 +51,7 @@ setup(
         "Programming Language :: Python :: 3.10",
         "Topic :: Software Development :: Quality Assurance",
         "Topic :: Software Development :: Testing",
+        "Topic :: Text Processing :: Markup :: LaTeX",
         "Typing :: Typed",
     ],
 )
