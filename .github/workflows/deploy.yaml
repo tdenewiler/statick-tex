@@ -14,10 +14,10 @@ jobs:
     steps:
       - uses: actions/checkout@master
 
-      - name: Set up Python 3.8
+      - name: Set up Python
         uses: actions/setup-python@v1
         with:
-          python-version: 3.8
+          python-version: "3.8"
 
       - uses: actions/cache@v1
         if: startsWith(runner.os, 'Linux')
