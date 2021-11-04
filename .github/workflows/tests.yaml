@@ -96,13 +96,14 @@ jobs:
         run: |
           mypy --ignore-missing-imports --strict src/
 
-      - name: Statick markdown
+      - name: Statick Markdown
         if: matrix.os == 'ubuntu-18.04' || matrix.os == 'ubuntu-20.04'
-        run: |
-          statick . --check --profile documentation.yaml
+        uses: sscpac/statick-action@main
+        with:
+          profile: documentation.yaml
 
-      - name: Self check
+      - name: Statick
         if: matrix.os == 'ubuntu-18.04' || matrix.os == 'ubuntu-20.04'
-        run: |
-          mkdir statick-output
-          statick . --output-directory statick-output --check --profile self_check.yaml
+        uses: sscpac/statick-action@main
+        with:
+          profile: self_check.yaml
