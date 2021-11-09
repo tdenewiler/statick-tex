@@ -54,34 +54,10 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install --upgrade setuptools
           python -m pip install --upgrade wheel
-          python -m pip install --upgrade coverage
-          python -m pip install --upgrade black
           python -m pip install --upgrade mypy
-          python -m pip install --upgrade statick-md
           python -m pip install --upgrade tox
           python -m pip install --upgrade tox-gh-actions
           python -m pip install --upgrade virtualenv
-          python -m pip install -r requirements.txt
-
-      - name: Install tools (Linux)
-        if: matrix.os == 'ubuntu-18.04' || matrix.os == 'ubuntu-20.04'
-        run: |
-          sudo apt update
-          sudo apt install chktex
-          sudo apt install lacheck
-
-      # Have to install newer version from non-apt source due to SSL library compatibility issues.
-      - name: Install node
-        if: matrix.os == 'ubuntu-18.04' || matrix.os == 'ubuntu-20.04'
-        run: |
-          sudo apt install curl
-          curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh
-          sudo bash nodesource_setup.sh
-          sudo apt install nodejs
-          sudo npm install -g n
-          sudo n stable
-          sudo npm install -g markdownlint-cli@0.21.0
-          rm nodesource_setup.sh
 
       - name: Tox
         run: |
@@ -96,13 +72,14 @@ jobs:
         run: |
           mypy --ignore-missing-imports --strict src/
 
-      - name: Statick markdown
+      - name: Statick Markdown
         if: matrix.os == 'ubuntu-18.04' || matrix.os == 'ubuntu-20.04'
-        run: |
-          statick . --check --profile documentation.yaml
+        uses: sscpac/statick-action@main
+        with:
+          profile: documentation.yaml
 
-      - name: Self check
+      - name: Statick
         if: matrix.os == 'ubuntu-18.04' || matrix.os == 'ubuntu-20.04'
-        run: |
-          mkdir statick-output
-          statick . --output-directory statick-output --check --profile self_check.yaml
+        uses: sscpac/statick-action@main
+        with:
+          profile: self_check.yaml
