@@ -12,6 +12,30 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Removed
 
+## v0.2.5 - 2022-01-04
+
+### Added
+
+- Add Python 3.10 support.
+- Add scheduled weekly workflow run.
+- Add ability to manually trigger workflow run for any branch.
+- Switch type hints from comment style to inline style.
+- Switch workflow testing from local installed Statick to
+  [Statick GitHub Action](https://github.com/sscpac/statick-action).
+
+### Fixed
+
+- Fix pylint warnings related to using the open call without specifying an encoding.
+- Switch to Pythonic way of checking that a variable is not equal to more than one value (fixes pylint warning).
+- Use quotes for version numbers in YAML to avoid truncating trailing zeros.
+- Switch use of codecov-action from v1 to v2 for increased stability when uploading reports.
+- Do not fail workflow if Codecov results are not uploaded successfully.
+  That step is too brittle and fails intermittently.
+
+### Removed
+
+- Remove support for Ubuntu 16.04 and Python 3.5.
+
 ## v0.2.4 - 2021-01-19
 
 ### Changed
