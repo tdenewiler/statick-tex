@@ -10,7 +10,8 @@ levels:
         flags: ""
 
   tex_with_pylint:
-    inherits_from: "tex"
+    inherits_from:
+      - "tex"
     discovery:
       python:
         flags: ""
