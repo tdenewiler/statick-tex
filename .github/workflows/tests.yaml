@@ -58,8 +58,6 @@ jobs:
           python -m pip install --upgrade tox
           python -m pip install --upgrade tox-gh-actions
           python -m pip install --upgrade virtualenv
-          # Temporary install needed for upstream bug: https://github.com/pytest-dev/pytest/issues/10420
-          python -m pip install --upgrade py
 
       - name: Tox
         run: |
