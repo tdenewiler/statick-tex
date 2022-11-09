@@ -59,6 +59,10 @@ jobs:
           python -m pip install --upgrade tox-gh-actions
           python -m pip install --upgrade virtualenv
 
+      - name: Print pylint version
+        run: |
+          pylint --version
+
       - name: Tox
         run: |
           python -m tox
