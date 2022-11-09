@@ -59,11 +59,6 @@ jobs:
           python -m pip install --upgrade tox-gh-actions
           python -m pip install --upgrade virtualenv
 
-      - name: Print pylint version
-        if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04'
-        run: |
-          pylint --version
-
       - name: Tox
         run: |
           python -m tox
