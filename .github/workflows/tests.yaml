@@ -14,7 +14,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-latest, ubuntu-18.04, ubuntu-20.04, windows-latest]
+        os: [macos-latest, ubuntu-20.04, ubuntu-22.04, windows-latest]
         python-version: ['3.7', '3.8', '3.9', '3.10']
 
     steps:
@@ -73,13 +73,15 @@ jobs:
           mypy --ignore-missing-imports --strict src/
 
       - name: Statick Markdown
-        if: matrix.os == 'ubuntu-18.04' || matrix.os == 'ubuntu-20.04'
-        uses: sscpac/statick-action@v0.0.2
+        if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04'
+        uses: sscpac/statick-action@v0.1.0
         with:
           profile: documentation.yaml
+          timings: true
 
       - name: Statick
-        if: matrix.os == 'ubuntu-18.04' || matrix.os == 'ubuntu-20.04'
-        uses: sscpac/statick-action@v0.0.2
+        if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04'
+        uses: sscpac/statick-action@v0.1.0
         with:
           profile: self_check.yaml
+          timings: true

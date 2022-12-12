@@ -9,7 +9,7 @@ with open("README.md", encoding="utf-8") as fid:
 TEST_DEPS = [
     "mock",
     "pre-commit",
-    "pytest",
+    "pytest==7.1",
 ]
 
 EXTRAS = {
