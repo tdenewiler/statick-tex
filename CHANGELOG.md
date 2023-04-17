@@ -13,8 +13,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Fixed
 
-- Process all Python source files at once with pylint tool plugin, instead of one pylint run per file. (#460)
+- Process all Python source files at once with pylint tool plugin, instead of one pylint run per file. (#73)
 - Pin flake8<5 and pycodestyle<2.9.0 until <https://github.com/tholo/pytest-flake8/issues/87> is fixed.
+
+### Removed
+
+- Removed deprecated pypi package [codecov](https://github.com/codecov/codecov-python) from Tox configuration. (#74)
+  Discussion at: <https://community.codecov.com/t/codecov-yanked-from-pypi-all-versions/4259>.
+
 
 ## v0.3.1 - 2022-10-10
 
