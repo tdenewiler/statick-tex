@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## Unreleased
 
+## v0.3.2 - 2023-06-21
+
 ### Added
 
 - Update Read the Docs to required [v2 configuration file](https://blog.readthedocs.com/migrate-configuration-v2/).
