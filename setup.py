@@ -20,7 +20,7 @@ setup(
     author="Thomas Denewiler",
     name="statick-tex",
     description="Statick analysis plugins for TeX/LaTeX files and projects.",
-    version="0.3.4",
+    version="0.3.5",
     packages=[
         "statick_tool",
         "statick_tool.plugins.discovery",
