@@ -68,7 +68,7 @@ jobs:
           password: ${{ secrets.PYPI_TOKEN }}
 
       - name: Sphinx lint
-        uses: ammaraskar/sphinx-action@v1
+        uses: ammaraskar/sphinx-action@master
         with:
           docs-folder: "docs/"
 
