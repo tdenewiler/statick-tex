@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## Unreleased
 
+### Fixed
+
+- Revert version used for sphinx-action to perform linting of Sphinx files.
+
 ## v0.3.3 - 2023-06-21
 
 ### Changed
