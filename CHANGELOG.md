@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## Unreleased
 
+### Changed
+
+- Unpin documentation requirement for sphinx.
+  Was pinned at `1.7.9` but that version is missing support for flags used by some GitHub actions.
+  Current version is `4.4.0`.
+
 ## v0.3.4 - 2023-06-21
 
 ### Fixed
