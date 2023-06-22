@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## Unreleased
 
+### Changed
+
+- Cleanup supported versions. (#77)
+  - Drop support for Python 3.7 due to end-of-life on 27 June 2023.
+  - Run deployment actions on ubuntu-latest.
+  - Make setup.py and tox.ini consistent with supported versions.
+  - Update versions of actions to use only tags.
+
 ## v0.3.2 - 2023-06-21
 
 ### Added
