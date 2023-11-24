@@ -43,8 +43,8 @@ val_parser = "statick_tool.plugins.tool.val_parser:ValParserToolPlugin"
 val_validate = "statick_tool.plugins.tool.val_validate:ValValidateToolPlugin"
 
 [project.urls]
-"Homepage" = "https://github.com/tdenewiler/statick-planning"
-"Bug Tracker" = "https://github.com/tdenewiler/statick-planning/issues"
+"Homepage" = "https://github.com/tdenewiler/statick-tex"
+"Bug Tracker" = "https://github.com/tdenewiler/statick-tex/issues"
 
 [project.optional-dependencies]
 test = [
