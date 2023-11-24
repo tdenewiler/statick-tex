@@ -36,11 +36,11 @@ statick_tool = [
 ]
 
 [project.entry-points."statick_tool.plugins.discovery"]
-pddl = "statick_tool.plugins.discovery.pddl:PDDLDiscoveryPlugin"
+tex = "statick_tool.plugins.discovery.tex:TexDiscoveryPlugin"
 
 [project.entry-points."statick_tool.plugins.tool"]
-val_parser = "statick_tool.plugins.tool.val_parser:ValParserToolPlugin"
-val_validate = "statick_tool.plugins.tool.val_validate:ValValidateToolPlugin"
+chktex = "statick_tool.plugins.tool.chktex:ChktexToolPlugin"
+lacheck = "statick_tool.plugins.tool.lacheck:LacheckToolPlugin"
 
 [project.urls]
 "Homepage" = "https://github.com/tdenewiler/statick-tex"
