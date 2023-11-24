@@ -1,0 +1,72 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "statick-tex"
+authors = [{name = "NIWC Pacific"}]
+description="Statick analysis plugins for TeX/LaTeX files and projects."
+version = "0.3.5"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "CC0-1.0"}
+classifiers = [
+    "License :: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Quality Assurance",
+    "Topic :: Software Development :: Testing",
+    "Topic :: Text Processing :: Markup :: LaTeX",
+    "Typing :: Typed",
+]
+dependencies = [
+    "importlib_metadata",
+    "statick",
+    "types-docutils",
+]
+
+[tool.setuptools.package-data]
+statick_tool = [
+    "rsc/*",
+    "rsc/.*",
+]
+
+[project.entry-points."statick_tool.plugins.discovery"]
+pddl = "statick_tool.plugins.discovery.pddl:PDDLDiscoveryPlugin"
+
+[project.entry-points."statick_tool.plugins.tool"]
+val_parser = "statick_tool.plugins.tool.val_parser:ValParserToolPlugin"
+val_validate = "statick_tool.plugins.tool.val_validate:ValValidateToolPlugin"
+
+[project.urls]
+"Homepage" = "https://github.com/tdenewiler/statick-planning"
+"Bug Tracker" = "https://github.com/tdenewiler/statick-planning/issues"
+
+[project.optional-dependencies]
+test = [
+    "coverage",
+    "flake8-pep3101",
+    "flake8<5",  # Pin until https://github.com/tholo/pytest-flake8/issues/87 is fixed.
+    "mock",
+    "mypy",
+    "pycodestyle<2.9.0",  # Pin until https://github.com/tholo/pytest-flake8/issues/87 is fixed.
+    "pydocstyle",
+    "pytest",
+    "pytest-cov",
+    "setuptools",
+    "statick",
+    "tox",
+    "tox-gh-actions",
+]
+docs = [
+    "sphinx==1.7.9",
+    "yaml-1.3",
+]
+dist = [
+    "setuptools",
+    "wheel",
+]
