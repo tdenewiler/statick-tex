@@ -67,6 +67,13 @@ def test_lacheck_tool_plugin_scan_valid():
     # We expect to have space before punctuation mark warning.
     assert len(issues) == 1
 
+    try:
+        os.remove(os.path.join(os.getcwd(), "lacheck.log"))
+    except FileNotFoundError as ex:
+        print(f"Error: {ex}")
+    except OSError as ex:
+        print(f"Error: {ex}")
+
 
 def test_lacheck_tool_plugin_parse_valid():
     """Verify that we can parse the normal output of lacheck."""
@@ -119,6 +126,13 @@ def test_lacheck_tool_plugin_scan_calledprocesserror(mock_subprocess_check_outpu
     issues = ltp.scan(package, "level")
     assert not issues
 
+    try:
+        os.remove(os.path.join(os.getcwd(), "lacheck.log"))
+    except FileNotFoundError as ex:
+        print(f"Error: {ex}")
+    except OSError as ex:
+        print(f"Error: {ex}")
+
 
 @mock.patch("statick_tool.plugins.tool.lacheck.subprocess.check_output")
 def test_lacheck_tool_plugin_scan_oserror(mock_subprocess_check_output):
@@ -137,3 +151,10 @@ def test_lacheck_tool_plugin_scan_oserror(mock_subprocess_check_output):
     ]
     issues = ltp.scan(package, "level")
     assert issues is None
+
+    try:
+        os.remove(os.path.join(os.getcwd(), "lacheck.log"))
+    except FileNotFoundError as ex:
+        print(f"Error: {ex}")
+    except OSError as ex:
+        print(f"Error: {ex}")
