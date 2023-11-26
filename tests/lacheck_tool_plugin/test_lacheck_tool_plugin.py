@@ -126,13 +126,6 @@ def test_lacheck_tool_plugin_scan_calledprocesserror(mock_subprocess_check_outpu
     issues = ltp.scan(package, "level")
     assert not issues
 
-    try:
-        os.remove(os.path.join(os.getcwd(), "lacheck.log"))
-    except FileNotFoundError as ex:
-        print(f"Error: {ex}")
-    except OSError as ex:
-        print(f"Error: {ex}")
-
 
 @mock.patch("statick_tool.plugins.tool.lacheck.subprocess.check_output")
 def test_lacheck_tool_plugin_scan_oserror(mock_subprocess_check_output):
