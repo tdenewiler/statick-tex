@@ -25,10 +25,6 @@ jobs:
           python-version: "3.11"
           cache: 'pip'
 
-      - name: Install tools
-        run: |
-          pip install .[dist]
-
       - name: Build a binary wheel and a source tarball
         run: |
           pip install -q build
