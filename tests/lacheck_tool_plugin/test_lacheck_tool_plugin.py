@@ -5,6 +5,7 @@ import os
 import pytest
 import subprocess
 import sys
+from pathlib import Path
 
 import statick_tool
 from statick_tool.config import Config
@@ -145,9 +146,11 @@ def test_lacheck_tool_plugin_scan_oserror(mock_subprocess_check_output):
     issues = ltp.scan(package, "level")
     assert issues is None
 
-    try:
-        os.remove(os.path.join(os.getcwd(), "lacheck.log"))
-    except FileNotFoundError as ex:
-        print(f"Error: {ex}")
-    except OSError as ex:
-        print(f"Error: {ex}")
+    log_file = Path("lacheck.log")
+    if log_file.is_file():
+        try:
+            log_file.unlink()
+        except FileNotFoundError as ex:
+            print(f"Error: {ex}")
+        except OSError as ex:
+            print(f"Error: {ex}")
