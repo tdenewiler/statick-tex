@@ -5,6 +5,7 @@ import sys
 
 from statick_tool.exceptions import Exceptions
 from statick_tool.package import Package
+
 from statick_tool.plugins.discovery.tex import TexDiscoveryPlugin
 
 if sys.version_info < (3, 10):
