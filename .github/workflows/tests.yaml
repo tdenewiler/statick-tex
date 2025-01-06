@@ -34,12 +34,12 @@ jobs:
       # Remove apt repos that are known to break from time to time.
       # See https://github.com/actions/virtual-environments/issues/323
       - name: Remove broken apt repos [Ubuntu]
-        if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04' || matrix.os == 'ubuntu-24.04'
+        if: runner.os == 'Linux'
         run: |
           for apt_file in `grep -lr microsoft /etc/apt/sources.list.d/`; do sudo rm $apt_file; done
 
       - name: Install tools (Linux)
-        if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04' || matrix.os == 'ubuntu-24.04'
+        if: runner.os == 'Linux'
         run: |
           sudo apt-get update
           sudo apt-get install chktex
@@ -60,14 +60,14 @@ jobs:
           mypy --ignore-missing-imports --strict src/
 
       - name: Statick Markdown
-        if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04' || matrix.os == 'ubuntu-24.04'
+        if: runner.os == 'Linux'
         uses: sscpac/statick-action@v0.9.2
         with:
           profile: documentation.yaml
           timings: true
 
       - name: Statick
-        if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04' || matrix.os == 'ubuntu-24.04'
+        if: runner.os == 'Linux'
         uses: sscpac/statick-action@v0.9.2
         with:
           profile: self_check.yaml
