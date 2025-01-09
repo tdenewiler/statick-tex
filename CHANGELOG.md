@@ -19,14 +19,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
   - Unable to get line coverage working with new plugin mechanism.
     Unit tests still work to find problems.
 - Rename plugin modules so they are shorter and less redundant.
+- Upgrade statick-action from 0.1.0 to 0.9.2.
 
 ### Removed
 
 - No longer support Python 3.8.
-
-### Changed
-
-- Upgrade statick-action from 0.1.0 to 0.9.2.
 
 ## v0.3.5 - 2023-06-21
 
