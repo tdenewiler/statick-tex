@@ -26,6 +26,11 @@ The recommended method to install these Statick plugins is via pip:
 
 You can also clone the repository and use it locally.
 
+To use the _tool_ plugins you need to install the tools they are based on.
+For Ubuntu Linux you would use
+
+    apt install chktex lacheck
+
 ## Usage
 
 ### Pip Install

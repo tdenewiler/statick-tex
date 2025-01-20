@@ -14,49 +14,60 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-latest, ubuntu-20.04, ubuntu-22.04, windows-latest]
-        python-version: ['3.8', '3.9', '3.10', '3.11']
+        os: [macos-latest, ubuntu-20.04, ubuntu-22.04, ubuntu-24.04, windows-latest]
+        python-version: ['3.9', '3.10', '3.11', '3.12', '3.13']
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
+          cache: 'pip'
 
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
-          python -m pip install --upgrade setuptools
-          python -m pip install --upgrade wheel
-          python -m pip install --upgrade mypy
-          python -m pip install --upgrade tox
-          python -m pip install --upgrade tox-gh-actions
-          python -m pip install --upgrade virtualenv
+          pip install --upgrade pip
+          pip install .[docs,test]
+
+      # Remove apt repos that are known to break from time to time.
+      # See https://github.com/actions/virtual-environments/issues/323
+      - name: Remove broken apt repos [Ubuntu]
+        if: runner.os == 'Linux'
+        run: |
+          for apt_file in `grep -lr microsoft /etc/apt/sources.list.d/`; do sudo rm $apt_file; done
+
+      - name: Install tools (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install chktex
+          sudo apt-get install lacheck
 
       - name: Tox
         run: |
           python -m tox
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4
         with:
           fail_ci_if_error: false
+          token: ${{ secrets.CODECOV_TOKEN }}
 
       - name: Mypy
         run: |
           mypy --ignore-missing-imports --strict src/
 
       - name: Statick Markdown
-        if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04'
+        if: runner.os == 'Linux'
         uses: sscpac/statick-action@v0.9.2
         with:
           profile: documentation.yaml
           timings: true
 
       - name: Statick
-        if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04'
+        if: runner.os == 'Linux'
         uses: sscpac/statick-action@v0.9.2
         with:
           profile: self_check.yaml
