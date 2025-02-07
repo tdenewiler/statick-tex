@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "statick-tex"
 authors = [{name = "NIWC Pacific"}]
 description="Statick analysis plugins for TeX/LaTeX files and projects."
-version = "0.4.0"
+version = "0.5.0"
 readme = "README.md"
 requires-python = ">=3.9"
 license = {text = "CC0-1.0"}
@@ -25,7 +25,7 @@ classifiers = [
 ]
 dependencies = [
     "importlib_metadata",
-    "statick",
+    "statick<0.12",
     "types-docutils",
 ]
 
